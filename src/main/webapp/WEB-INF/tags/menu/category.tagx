@@ -12,14 +12,11 @@
 			<spring:message code="menu_category_${fn:toLowerCase(fn:substringAfter(id,'_'))}_label" var="label" htmlEscape="false"/>
 		</c:if>
 		
-		<li id="${fn:escapeXml(id)}">
-			<h2>
-				<c:out value="${label}" />
-			</h2>
-			<ul>
-				<jsp:doBody />
-			</ul>
+		<li id="${fn:escapeXml(id)}" class="nav-header cursor-pointer" data-toggle="collapse" data-target="#collapse_${fn:escapeXml(id)}">
+			<c:out value="${label}" />
 		</li>
-	
+		<div class="nav collapsible collapse" id="collapse_${fn:escapeXml(id)}">	
+			<jsp:doBody />
+		</div>
 	</c:if>
 </jsp:root>

@@ -205,3 +205,24 @@ web mvc all --package ~.web
 // Spring Roo 1.3.1.RELEASE [rev f4f5256] log opened at 2015-05-05 19:53:10
 security setup
 web mvc all --package ~.web
+// Spring Roo 1.3.1.RELEASE [rev f4f5256] log opened at 2015-05-05 22:52:51
+osgi start --url file://Users/miguelcarboni/.m2/repository/com/roo/bootstrap/de.eightbitboy.roo.bootstrap/0.3.1/de.eightbitboy.roo.bootstrap-0.3.1.jar
+// Spring Roo 1.3.1.RELEASE [rev f4f5256] log opened at 2015-05-05 22:55:24
+osgi start --url file:de.eightbitboy.roo.bootstrap-0.3.1.jar
+hint
+osgi start --url file:de.eightbitboy.roo.bootstrap-0.3.1.jar
+addon search --requiresCommand "bootstrap"
+osgi start --url file:///de.eightbitboy.roo.bootstrap-0.3.1.jar
+osgi start --url file:///Users/miguelcarboni/git/organizaciones/de.eightbitboy.roo.bootstrap-0.3.1.jar
+// Spring Roo 1.3.1.RELEASE [rev f4f5256] log opened at 2015-05-05 23:02:10
+osgi start --url file:///Users/miguelcarboni/git/organizaciones/de.eightbitboy.roo.bootstrap-0.3.1.jar
+osgi ps
+addon search --requiresCommand "roobootstrap"
+web mvc install bootstrap
+// Spring Roo 1.3.1.RELEASE [rev f4f5256] log opened at 2015-05-05 23:11:33
+// Spring Roo 1.3.1.RELEASE [rev f4f5256] log opened at 2015-05-05 23:11:51
+web mvc all --package ~.web
+help security
+help securty
+help security
+// Spring Roo 1.3.1.RELEASE [rev f4f5256] log opened at 2015-05-05 23:19:18

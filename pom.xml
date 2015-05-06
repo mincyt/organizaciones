@@ -14,6 +14,7 @@
         <slf4j.version>1.7.5</slf4j.version>
         <spring.version>3.2.8.RELEASE</spring.version>
     <spring-security.version>3.2.5.RELEASE</spring-security.version>
+    <spring.js.version>2.3.1.RELEASE</spring.js.version>
     </properties>
     <repositories>
         <repository>
@@ -236,7 +237,7 @@
         <dependency>
             <groupId>org.springframework.webflow</groupId>
             <artifactId>spring-js-resources</artifactId>
-            <version>2.2.1.RELEASE</version>
+            <version>${spring.js.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-digester</groupId>
