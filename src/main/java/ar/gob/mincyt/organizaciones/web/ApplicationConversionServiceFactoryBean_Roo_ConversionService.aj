@@ -7,6 +7,7 @@ import ar.gob.mincyt.organizaciones.domain.Barrio;
 import ar.gob.mincyt.organizaciones.domain.Ciudad;
 import ar.gob.mincyt.organizaciones.domain.Estado;
 import ar.gob.mincyt.organizaciones.domain.Idioma;
+import ar.gob.mincyt.organizaciones.domain.NombreDeOrganizacion;
 import ar.gob.mincyt.organizaciones.domain.Organizacion;
 import ar.gob.mincyt.organizaciones.domain.Pais;
 import ar.gob.mincyt.organizaciones.domain.Region;
@@ -16,6 +17,7 @@ import ar.gob.mincyt.organizaciones.service.BarrioService;
 import ar.gob.mincyt.organizaciones.service.CiudadService;
 import ar.gob.mincyt.organizaciones.service.EstadoService;
 import ar.gob.mincyt.organizaciones.service.IdiomaService;
+import ar.gob.mincyt.organizaciones.service.NombreDeOrganizacionService;
 import ar.gob.mincyt.organizaciones.service.OrganizacionService;
 import ar.gob.mincyt.organizaciones.service.PaisService;
 import ar.gob.mincyt.organizaciones.service.RegionService;
@@ -42,6 +44,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     
     @Autowired
     IdiomaService ApplicationConversionServiceFactoryBean.idiomaService;
+    
+    @Autowired
+    NombreDeOrganizacionService ApplicationConversionServiceFactoryBean.nombreDeOrganizacionService;
     
     @Autowired
     OrganizacionService ApplicationConversionServiceFactoryBean.organizacionService;
@@ -150,6 +155,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         return new org.springframework.core.convert.converter.Converter<java.lang.String, ar.gob.mincyt.organizaciones.domain.Idioma>() {
             public ar.gob.mincyt.organizaciones.domain.Idioma convert(String id) {
                 return getObject().convert(getObject().convert(id, Long.class), Idioma.class);
+            }
+        };
+    }
+    
+    public Converter<NombreDeOrganizacion, String> ApplicationConversionServiceFactoryBean.getNombreDeOrganizacionToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<ar.gob.mincyt.organizaciones.domain.NombreDeOrganizacion, java.lang.String>() {
+            public String convert(NombreDeOrganizacion nombreDeOrganizacion) {
+                return new StringBuilder().append(nombreDeOrganizacion.getDenominacion()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, NombreDeOrganizacion> ApplicationConversionServiceFactoryBean.getIdToNombreDeOrganizacionConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, ar.gob.mincyt.organizaciones.domain.NombreDeOrganizacion>() {
+            public ar.gob.mincyt.organizaciones.domain.NombreDeOrganizacion convert(java.lang.Long id) {
+                return nombreDeOrganizacionService.findNombreDeOrganizacion(id);
+            }
+        };
+    }
+    
+    public Converter<String, NombreDeOrganizacion> ApplicationConversionServiceFactoryBean.getStringToNombreDeOrganizacionConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, ar.gob.mincyt.organizaciones.domain.NombreDeOrganizacion>() {
+            public ar.gob.mincyt.organizaciones.domain.NombreDeOrganizacion convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), NombreDeOrganizacion.class);
             }
         };
     }
@@ -287,6 +316,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getIdiomaToStringConverter());
         registry.addConverter(getIdToIdiomaConverter());
         registry.addConverter(getStringToIdiomaConverter());
+        registry.addConverter(getNombreDeOrganizacionToStringConverter());
+        registry.addConverter(getIdToNombreDeOrganizacionConverter());
+        registry.addConverter(getStringToNombreDeOrganizacionConverter());
         registry.addConverter(getOrganizacionToStringConverter());
         registry.addConverter(getIdToOrganizacionConverter());
         registry.addConverter(getStringToOrganizacionConverter());

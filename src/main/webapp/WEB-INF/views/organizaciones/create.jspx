@@ -4,10 +4,11 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:create id="fc_ar_gob_mincyt_organizaciones_domain_Organizacion" modelAttribute="organizacion" path="/organizaciones" render="${empty dependencies}" z="dXmGvq2jYW1Ou6q3dzCDX2sND5I=">
         <field:checkbox field="vigente" id="c_ar_gob_mincyt_organizaciones_domain_Organizacion_vigente" z="bX4OtBJbkI0se1xXlQuJNZrnTdM="/>
-        <field:select field="tipoDeCategoria" id="c_ar_gob_mincyt_organizaciones_domain_Organizacion_tipoDeCategoria" itemValue="tipodecategoriaid" items="${tiposdecategorias}" path="/tipodecategorias" required="true" z="5yKx7xbJIPpmDpnTMHEV/va9E70="/>
+        <field:select field="tipoDeCategoria" id="c_ar_gob_mincyt_organizaciones_domain_Organizacion_tipoDeCategoria" itemValue="tipodecategoriaid" items="${tiposdecategorias}" path="/tiposdecategorias" required="true" z="6zSybETCMOGfjBz44XGLz5X4JNM="/>
         <field:select field="estado" id="c_ar_gob_mincyt_organizaciones_domain_Organizacion_estado" itemValue="estadoid" items="${estados}" path="/estados" required="true" z="FNc14xbRjNoyNUgjszeMbdqF600="/>
         <field:datetime dateTimePattern="${organizacion_fechadeinicio_date_format}" field="fechaDeInicio" id="c_ar_gob_mincyt_organizaciones_domain_Organizacion_fechaDeInicio" required="true" z="3SSGq4+5uop82wZned7jscijZZc="/>
         <field:datetime dateTimePattern="${organizacion_fechadefinalizacion_date_format}" field="fechaDeFinalizacion" id="c_ar_gob_mincyt_organizaciones_domain_Organizacion_fechaDeFinalizacion" z="3NiJosvtvr+2DbR60iqueUxByi4="/>
+        <field:simple field="nombresDeOrganizacion" id="c_ar_gob_mincyt_organizaciones_domain_Organizacion_nombresDeOrganizacion" messageCode="entity_reference_not_managed" messageCodeAttribute="Nombre De Organizacion" z="pv+16Q6A1NVxANnUa/t0zJDeyjA="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_ar_gob_mincyt_organizaciones_domain_Organizacion" render="${not empty dependencies}" z="Sk9kelKlzm6/2KCf4vjDUM9gMh4="/>
 </div>

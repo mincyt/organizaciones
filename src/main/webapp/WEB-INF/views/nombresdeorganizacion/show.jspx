@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_ar_gob_mincyt_organizaciones_domain_NombreDeOrganizacion" object="${nombredeorganizacion}" path="/nombresdeorganizacion" z="EUt0NfeT/BRof74h9seHNVXdbGA=">
+        <field:display field="denominacion" id="s_ar_gob_mincyt_organizaciones_domain_NombreDeOrganizacion_denominacion" object="${nombredeorganizacion}" z="AYazToh0gI592Da2c9ONr6FVDcQ="/>
+        <field:display field="organizacion" id="s_ar_gob_mincyt_organizaciones_domain_NombreDeOrganizacion_organizacion" object="${nombredeorganizacion}" z="D8al5MFTqmKgzEEpiZF22OzVFmA="/>
+        <field:display field="idioma" id="s_ar_gob_mincyt_organizaciones_domain_NombreDeOrganizacion_idioma" object="${nombredeorganizacion}" z="OpRmLxJlksBMTnPQqPEpCe0VROQ="/>
+        <field:display field="estado" id="s_ar_gob_mincyt_organizaciones_domain_NombreDeOrganizacion_estado" object="${nombredeorganizacion}" z="UAl68lsC3vt8zY6CYUDDCTW+KVo="/>
+        <field:display field="esSigla" id="s_ar_gob_mincyt_organizaciones_domain_NombreDeOrganizacion_esSigla" object="${nombredeorganizacion}" z="5PZDT5BpAFpekJmCPc+KKFOQhm4="/>
+        <field:display field="esDenominacionPreferida" id="s_ar_gob_mincyt_organizaciones_domain_NombreDeOrganizacion_esDenominacionPreferida" object="${nombredeorganizacion}" z="TVpJVbL+sH/j8+IAov6AM+e69GU="/>
+    </page:show>
+</div>

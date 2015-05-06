@@ -6,6 +6,7 @@ package ar.gob.mincyt.organizaciones.web;
 import ar.gob.mincyt.organizaciones.domain.Estado;
 import ar.gob.mincyt.organizaciones.domain.Organizacion;
 import ar.gob.mincyt.organizaciones.domain.TipoDeCategoria;
+import ar.gob.mincyt.organizaciones.repository.NombreDeOrganizacionRepository;
 import ar.gob.mincyt.organizaciones.service.EstadoService;
 import ar.gob.mincyt.organizaciones.service.OrganizacionService;
 import ar.gob.mincyt.organizaciones.service.TipoDeCategoriaService;
@@ -38,6 +39,9 @@ privileged aspect OrganizacionController_Roo_Controller {
     @Autowired
     OrganizacionService OrganizacionController.organizacionService;
     
+    @Autowired
+    NombreDeOrganizacionRepository OrganizacionController.nombreDeOrganizacionRepository;
+    
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String OrganizacionController.create(@Valid Organizacion organizacion, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
@@ -54,7 +58,7 @@ privileged aspect OrganizacionController_Roo_Controller {
         populateEditForm(uiModel, new Organizacion());
         List<String[]> dependencies = new ArrayList<String[]>();
         if (tipoDeCategoriaService.countAllTiposDeCategorias() == 0) {
-            dependencies.add(new String[] { "tipoDeCategoria", "tipodecategorias" });
+            dependencies.add(new String[] { "tipoDeCategoria", "tiposdecategorias" });
         }
         if (estadoService.countAllEstados() == 0) {
             dependencies.add(new String[] { "estado", "estados" });
@@ -122,6 +126,7 @@ privileged aspect OrganizacionController_Roo_Controller {
         uiModel.addAttribute("organizacion", organizacion);
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("estados", estadoService.findAllEstados());
+        uiModel.addAttribute("nombresdeorganizacion", nombreDeOrganizacionRepository.findAll());
         uiModel.addAttribute("tiposdecategorias", tipoDeCategoriaService.findAllTiposDeCategorias());
     }
     

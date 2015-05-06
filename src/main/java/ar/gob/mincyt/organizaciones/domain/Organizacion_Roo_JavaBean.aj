@@ -4,9 +4,11 @@
 package ar.gob.mincyt.organizaciones.domain;
 
 import ar.gob.mincyt.organizaciones.domain.Estado;
+import ar.gob.mincyt.organizaciones.domain.NombreDeOrganizacion;
 import ar.gob.mincyt.organizaciones.domain.Organizacion;
 import ar.gob.mincyt.organizaciones.domain.TipoDeCategoria;
 import java.util.Date;
+import java.util.Set;
 
 privileged aspect Organizacion_Roo_JavaBean {
     
@@ -48,6 +50,14 @@ privileged aspect Organizacion_Roo_JavaBean {
     
     public void Organizacion.setFechaDeFinalizacion(Date fechaDeFinalizacion) {
         this.fechaDeFinalizacion = fechaDeFinalizacion;
+    }
+    
+    public Set<NombreDeOrganizacion> Organizacion.getNombresDeOrganizacion() {
+        return this.nombresDeOrganizacion;
+    }
+    
+    public void Organizacion.setNombresDeOrganizacion(Set<NombreDeOrganizacion> nombresDeOrganizacion) {
+        this.nombresDeOrganizacion = nombresDeOrganizacion;
     }
     
 }
