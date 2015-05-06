@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_ar_gob_mincyt_organizaciones_domain_Estado" object="${estado}" path="/estadoes" z="1tBO9wnMznq7/7R2i8DJfmrVtzg=">
+        <field:display field="denominacion" id="s_ar_gob_mincyt_organizaciones_domain_Estado_denominacion" object="${estado}" z="YjH3eJPCeG/Irho3SsF9y3Qx6MU="/>
+    </page:show>
+</div>

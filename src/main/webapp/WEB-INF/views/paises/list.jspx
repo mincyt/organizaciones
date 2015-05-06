@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_ar_gob_mincyt_organizaciones_domain_Pais" items="${paises}" z="rBC628cyQYRB6Pvmb2GK1iQPu/o=">
+        <table:table data="${paises}" id="l_ar_gob_mincyt_organizaciones_domain_Pais" path="/paises" typeIdFieldName="paisid" z="+X4LxRFPKxROkN/OOB3pbtH33X8=">
+            <table:column id="c_ar_gob_mincyt_organizaciones_domain_Pais_denominacion" property="denominacion" z="H0vvYEnEtvJP3H025t782Y+vLKE="/>
+            <table:column id="c_ar_gob_mincyt_organizaciones_domain_Pais_codigoISO2" property="codigoISO2" z="DT6O7G0pap98xVteULjZOz3vcWk="/>
+            <table:column id="c_ar_gob_mincyt_organizaciones_domain_Pais_codigoISO3" property="codigoISO3" z="Ac3xTq4by8/YuRMljVOCEhrcW00="/>
+            <table:column id="c_ar_gob_mincyt_organizaciones_domain_Pais_nombreISO" property="nombreISO" z="3kflVjbvWACqIPXQJVzecUpf7nE="/>
+            <table:column id="c_ar_gob_mincyt_organizaciones_domain_Pais_gentilicio" property="gentilicio" z="gqh5lnzy0CuxIgoOtt4Z4EAMf0U="/>
+            <table:column id="c_ar_gob_mincyt_organizaciones_domain_Pais_estado" property="estado" z="Y73Xm8Q7mFnwiIdy945PHaJWK5Q="/>
+        </table:table>
+    </page:list>
+</div>

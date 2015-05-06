@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_ar_gob_mincyt_organizaciones_domain_Pais" object="${pais}" path="/paises" z="FOVqp6ypozFC9ZF4fEJiit9bIqE=">
+        <field:display field="denominacion" id="s_ar_gob_mincyt_organizaciones_domain_Pais_denominacion" object="${pais}" z="Xs9qQRBISufs6E8aGEbGm62vZgA="/>
+        <field:display field="codigoISO2" id="s_ar_gob_mincyt_organizaciones_domain_Pais_codigoISO2" object="${pais}" z="lVYYpP8sxHD3+EoRGOGKhVXxDPk="/>
+        <field:display field="codigoISO3" id="s_ar_gob_mincyt_organizaciones_domain_Pais_codigoISO3" object="${pais}" z="ul8n+TSyVinDch3dzFW1j68U2UY="/>
+        <field:display field="nombreISO" id="s_ar_gob_mincyt_organizaciones_domain_Pais_nombreISO" object="${pais}" z="H1OuwsfM17PepicAqSGBE0382fs="/>
+        <field:display field="gentilicio" id="s_ar_gob_mincyt_organizaciones_domain_Pais_gentilicio" object="${pais}" z="XMdyeOecQg4R0MLgIFC1uUB/hV4="/>
+        <field:display field="estado" id="s_ar_gob_mincyt_organizaciones_domain_Pais_estado" object="${pais}" z="Rf1SVTx6Ne1hBR+sWTY26/l6wqY="/>
+    </page:show>
+</div>

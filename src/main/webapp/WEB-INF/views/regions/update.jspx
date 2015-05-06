@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_ar_gob_mincyt_organizaciones_domain_Region" idField="regionid" modelAttribute="region" path="/regions" versionField="Version" z="2mz8xtIIpNt5aBbuAknMj2BZvfg=">
+        <field:input field="denominacion" id="c_ar_gob_mincyt_organizaciones_domain_Region_denominacion" z="gk9B9RSk5Xo8oznx4h/RbhAwP3A="/>
+        <field:input field="codigoISO" id="c_ar_gob_mincyt_organizaciones_domain_Region_codigoISO" z="OY3NEfyAmxtkfyeKfpyo2j28dKM="/>
+        <field:input field="nombreISO" id="c_ar_gob_mincyt_organizaciones_domain_Region_nombreISO" z="9UvTzOsHS8sZ8ZB8Enw67MsEHL0="/>
+        <field:select field="estado" id="c_ar_gob_mincyt_organizaciones_domain_Region_estado" itemValue="estadoid" items="${estadoes}" path="/estadoes" z="SB87U/qMoUHku5xQMnPc2dwmxlA="/>
+        <field:select field="pais" id="c_ar_gob_mincyt_organizaciones_domain_Region_pais" itemValue="paisid" items="${paises}" path="/paises" z="WqYGB2u2NHHYktMp0xCwALqCX9E="/>
+    </form:update>
+</div>

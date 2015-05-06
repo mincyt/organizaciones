@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_ar_gob_mincyt_organizaciones_domain_Barrio" idField="barrioid" modelAttribute="barrio" path="/barrios" versionField="Version" z="oYbYcsbO7VrWMQzvQkxx8l5Lups=">
+        <field:input field="denominacion" id="c_ar_gob_mincyt_organizaciones_domain_Barrio_denominacion" z="WCsNoVvaoKZdzamx24quv6c0l/w="/>
+        <field:select field="estado" id="c_ar_gob_mincyt_organizaciones_domain_Barrio_estado" itemValue="estadoid" items="${estadoes}" path="/estadoes" z="vmSOJ1zkJCvi/Ym9n1mDRw+Wcz8="/>
+        <field:select field="ciudad" id="c_ar_gob_mincyt_organizaciones_domain_Barrio_ciudad" itemValue="ciudadid" items="${ciudads}" path="/ciudads" z="DVQK399TrAmXSYMDN0fPeKl70jw="/>
+    </form:update>
+</div>

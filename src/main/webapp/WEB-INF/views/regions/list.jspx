@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_ar_gob_mincyt_organizaciones_domain_Region" items="${regions}" z="eg+YW+thnd4TBm3xt68bsGDswn0=">
+        <table:table data="${regions}" id="l_ar_gob_mincyt_organizaciones_domain_Region" path="/regions" typeIdFieldName="regionid" z="F17wrgiuxpwXYkNzU8r7HUeT1ME=">
+            <table:column id="c_ar_gob_mincyt_organizaciones_domain_Region_denominacion" property="denominacion" z="fIB7XCjDdWTGNK8BzvfKVRomldM="/>
+            <table:column id="c_ar_gob_mincyt_organizaciones_domain_Region_codigoISO" property="codigoISO" z="u7dCcOYRDx5GKB+FJUJ2a/OhCFg="/>
+            <table:column id="c_ar_gob_mincyt_organizaciones_domain_Region_nombreISO" property="nombreISO" z="NyvWH5vWp8TG9eyu9LXXPC1SpwM="/>
+            <table:column id="c_ar_gob_mincyt_organizaciones_domain_Region_estado" property="estado" z="utEEjsMT13VXMScxTuedHyBhdTE="/>
+            <table:column id="c_ar_gob_mincyt_organizaciones_domain_Region_pais" property="pais" z="Zlix6ANrazX9I+eZeeWYy2yJVH4="/>
+        </table:table>
+    </page:list>
+</div>

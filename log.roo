@@ -1,0 +1,207 @@
+// Spring Roo 1.3.1.RELEASE [rev f4f5256] log opened at 2015-05-05 10:55:13
+project --topLevelPackage ar.gob.mincyt.organizaciones --projectName organizaciones --java 6 --packaging WAR 
+persistence setup --database POSTGRES --provider HIBERNATE --hostName localhost --password postgres --userName postgres --transactionManager txManager
+persistence setup --database POSTGRES --provider HIBERNATE --hostName localhost:6543 --password postgres --userName postgres --transactionManager txManager
+persistence setup --database POSTGRES --provider HIBERNATE --hostName localhost:6543 --password postgres --userName postgres --transactionManager txManager
+entity jpa --class ar.gob.mincyt.organizaciones.domain.Estado
+field string --fieldName denominacion --notNull --unique 
+// [failed] entity jpa --class ar.gob.mincyt.organizaciones.domain.Estado --schema organizaciones --identifierField estadoid
+hint
+hint entities
+hint
+// [failed] entity jpa --activeRecord false --schema organizaciones --identifierField estadoid --class ar.gob.mincyt.organizaciones.domain.Estado 
+// Spring Roo 1.3.1.RELEASE [rev f4f5256] log opened at 2015-05-05 11:12:39
+entity jpa --activeRecord false --schema organizaciones --identifierField estadoid --class ar.gob.mincyt.organizaciones.domain.Estado 
+field string --fieldName denominacion --notNull --unique 
+// [failed] field string --fieldName denominacion --notNull --unique 
+entity jpa --activeRecord false --schema organizaciones --identifierField idiomaid --class ar.gob.mincyt.organizaciones.domain.Idioma
+field string --fieldName denominacion --notNull --unique
+field string --fieldName identificadorISO --notNull --unique
+field string --fieldName nombreISO --notNull --unique
+// [failed] field reference --fieldName estado --joinColumnName  estadoid --type ~.Estado
+field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+repository jpa --interface ~.repository.EstadoRepository --entity ~.domain.Estado
+repository jpa --interface ~.repository.IdiomaRepository --entity ~.domain.Idioma
+osgi start --url file:///home/lrkwz/roo-twitter-bootstrap/target/com.ct.roo.addon.tbootstrap-0.1.0.BUILD-SNAPSHOT.jar
+persistence setup --database POSTGRES --provider HIBERNATE --hostName localhost:6543 --password postgres --userName postgres --transactionManager txManager --persistenceUnit organizaciones
+service all --interfacePackage ~.service
+web mvc setup
+web mvc all --package ~.web
+persistence setup --database POSTGRES --provider HIBERNATE --hostName localhost:6543 --password postgres --userName postgres --transactionManager transactionManager
+persistence setup --database POSTGRES --provider HIBERNATE --hostName localhost:6543 --password postgres --userName postgres --transactionManager transactionManager --persistenceUnit organizaciones
+persistence setup --database POSTGRES --provider HIBERNATE --hostName localhost:6543 --password postgres --userName postgres --transactionManager transactionManager --persistenceUnit organizaciones
+security setup
+entity jpa --activeRecord false --schema organizaciones --identifierField paisid --class ar.gob.mincyt.organizaciones.domain.Pais
+field string --fieldName denominacion 
+field string --fieldName codigoISO2 
+field string --fieldName codigoISO3
+field string --fieldName nombreISO
+field string --fieldName gentilicio
+field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+repository jpa --interface ~.repository.PaisRepository --entity ~.domain.Pais
+service all --interfacePackage ~.service
+web mvc all --package ~.web
+web mvc all --package ~.web
+service all --interfacePackage ~.service
+entity jpa --activeRecord false --schema organizaciones --identifierField regionid --class ar.gob.mincyt.organizaciones.domain.Region
+field string --fieldName denominacion 
+field string --fieldName codigoISO 
+field string --fieldName nombreISO
+field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+field reference --fieldName pais --joinColumnName paisid --type ~.domain.Pais
+repository jpa --interface ~.repository.RegionRepository --entity ~.domain.Region
+service all --interfacePackage ~.service
+web mvc all --package ~.web
+entity jpa --activeRecord false --schema organizaciones --identifierField subregionid --class ar.gob.mincyt.organizaciones.domain.SubRegion
+field string --fieldName denominacion 
+field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+field reference --fieldName regionid --joinColumnName paisid --type ~.domain.Region
+repository jpa --interface ~.repository.SubRegionRepository --entity ~.domain.SubRegion
+service all --interfacePackage ~.service
+web mvc all --package ~.web
+// [failed] field string --fieldName denominacion 
+// [failed] field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+// [failed] field reference --fieldName regionid --joinColumnName regionid --type ~.domain.Region
+entity jpa --activeRecord false --schema organizaciones --identifierField ciudadid --class ar.gob.mincyt.organizaciones.domain.Ciudad
+field string --fieldName denominacion 
+field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+// [failed] field reference --fieldName regionid --joinColumnName subregionid --type ~.domain.SubRegion
+// [failed] entity jpa --table subregion --activeRecord false --schema organizaciones --identifierField subregionid --class ar.gob.mincyt.organizaciones.domain.SubRegion
+// [failed] entity jpa --table subregion --activeRecord false --schema organizaciones --identifierField subregionid --class ar.gob.mincyt.organizaciones.domain.SubRegion
+// [failed] field string --fieldName denominacion 
+// [failed] field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+field reference --fieldName regionid --joinColumnName regionid --type ~.domain.Region
+// [failed] entity jpa --table subregion --activeRecord false --schema organizaciones --identifierField subregionid --class ar.gob.mincyt.organizaciones.domain.SubRegion
+// Spring Roo 1.3.1.RELEASE [rev f4f5256] log opened at 2015-05-05 19:23:15
+entity jpa --table subregion --activeRecord false --schema organizaciones --identifierField subregionid --class ar.gob.mincyt.organizaciones.domain.SubRegion
+field string --fieldName denominacion 
+field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+field reference --fieldName regionid --joinColumnName regionid --type ~.domain.Region
+entity jpa --activeRecord false --schema organizaciones --identifierField ciudadid --class ar.gob.mincyt.organizaciones.domain.Ciudad
+field string --fieldName denominacion 
+field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+field reference --fieldName regionid --joinColumnName subregionid --type ~.domain.SubRegion
+repository jpa --interface ~.repository.CiudadRepository --entity ~.domain.Ciudad
+repository jpa --interface ~.repository.SubRegionRepository --entity ~.domain.SubRegion
+service all --interfacePackage ~.service
+web mvc all --package ~.web
+entity jpa --activeRecord false --schema organizaciones --identifierField barrioid --class ar.gob.mincyt.organizaciones.domain.Barrio
+field string --fieldName denominacion 
+field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+field reference --fieldName regionid --joinColumnName ciudadid --type ~.domain.SubRegion
+repository jpa --interface ~.repository.BarrioRepository --entity ~.domain.Barrio
+service all --interfacePackage ~.service
+web mvc all --package ~.web
+// [failed] entity jpa --activeRecord false --schema organizaciones --identifierField regionid --class ar.gob.mincyt.organizaciones.domain.Region
+// [failed] field string --fieldName denominacion 
+// [failed] field string --fieldName codigoISO 
+// [failed] field string --fieldName nombreISO
+// [failed] field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+// [failed] field reference --fieldName pais --joinColumnName paisid --type ~.domain.Pais
+// [failed] entity jpa --table subregion --activeRecord false --schema organizaciones --identifierField subregionid --class ar.gob.mincyt.organizaciones.domain.SubRegion
+// [failed] field string --fieldName denominacion 
+// [failed] field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+// [failed] field reference --fieldName region --joinColumnName regionid --type ~.domain.Region
+// [failed] entity jpa --activeRecord false --schema organizaciones --identifierField ciudadid --class ar.gob.mincyt.organizaciones.domain.Ciudad
+// [failed] field string --fieldName denominacion 
+// [failed] field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+// [failed] field reference --fieldName region --joinColumnName subregionid --type ~.domain.SubRegion
+// [failed] entity jpa --activeRecord false --schema organizaciones --identifierField barrioid --class ar.gob.mincyt.organizaciones.domain.Barrio
+// [failed] field string --fieldName denominacion 
+// [failed] field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+// [failed] field reference --fieldName ciudad --joinColumnName ciudadid --type ~.domain.SubRegion
+// Spring Roo 1.3.1.RELEASE [rev f4f5256] log opened at 2015-05-05 19:34:08
+entity jpa --activeRecord false --schema organizaciones --identifierField regionid --class ar.gob.mincyt.organizaciones.domain.Region
+field string --fieldName denominacion 
+field string --fieldName codigoISO 
+field string --fieldName nombreISO
+field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+field reference --fieldName pais --joinColumnName paisid --type ~.domain.Pais
+entity jpa --table subregion --activeRecord false --schema organizaciones --identifierField subregionid --class ar.gob.mincyt.organizaciones.domain.SubRegion
+field string --fieldName denominacion 
+field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+field reference --fieldName region --joinColumnName regionid --type ~.domain.Region
+entity jpa --activeRecord false --schema organizaciones --identifierField ciudadid --class ar.gob.mincyt.organizaciones.domain.Ciudad
+field string --fieldName denominacion 
+field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+field reference --fieldName region --joinColumnName subregionid --type ~.domain.SubRegion
+entity jpa --activeRecord false --schema organizaciones --identifierField barrioid --class ar.gob.mincyt.organizaciones.domain.Barrio
+field string --fieldName denominacion 
+field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+field reference --fieldName ciudad --joinColumnName ciudadid --type ~.domain.SubRegion
+repository jpa --interface ~.repository.RegionRepository --entity ~.domain.Region
+repository jpa --interface ~.repository.SubRegionRepository --entity ~.domain.SubRegion
+repository jpa --interface ~.repository.CiudadRepository --entity ~.domain.Ciudad
+repository jpa --interface ~.repository.BarrioRepository --entity ~.domain.Barrio
+service all --interfacePackage ~.service
+web mvc all --package ~.web
+// Spring Roo 1.3.1.RELEASE [rev f4f5256] log opened at 2015-05-05 19:37:10
+entity jpa --activeRecord false --schema organizaciones --identifierField ciudadid --class ar.gob.mincyt.organizaciones.domain.Ciudad
+field string --fieldName denominacion 
+field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+field reference --fieldName region --joinColumnName subregionid --type ~.domain.SubRegion
+entity jpa --activeRecord false --schema organizaciones --identifierField barrioid --class ar.gob.mincyt.organizaciones.domain.Barrio
+field string --fieldName denominacion 
+field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+field reference --fieldName ciudad --joinColumnName ciudadid --type ~.domain.Ciudad
+repository jpa --interface ~.repository.CiudadRepository --entity ~.domain.Ciudad
+repository jpa --interface ~.repository.BarrioRepository --entity ~.domain.Barrio
+service all --interfacePackage ~.service
+web mvc all --package ~.web
+repository jpa --interface ~.repository.BarrioRepository --entity ~.domain.Barrio
+service all --interfacePackage ~.service
+web mvc all --package ~.web
+service all --interfacePackage ~.service
+web mvc all --package ~.web
+web mvc all --package ~.web
+// Spring Roo 1.3.1.RELEASE [rev f4f5256] log opened at 2015-05-05 19:47:22
+web mvc all --package ~.web
+web mvc all --package ~.web
+// Spring Roo 1.3.1.RELEASE [rev f4f5256] log opened at 2015-05-05 19:49:31
+project --topLevelPackage ar.gob.mincyt.organizaciones --projectName organizaciones --java 6 --packaging WAR 
+persistence setup --database POSTGRES --provider HIBERNATE --hostName localhost:6543 --password postgres --userName postgres --transactionManager transactionManager --persistenceUnit organizaciones
+entity jpa --activeRecord false --schema organizaciones --identifierField estadoid --class ar.gob.mincyt.organizaciones.domain.Estado 
+field string --fieldName denominacion --notNull --unique
+entity jpa --activeRecord false --schema organizaciones --identifierField idiomaid --class ar.gob.mincyt.organizaciones.domain.Idioma
+field string --fieldName denominacion --notNull --unique
+field string --fieldName identificadorISO --notNull --unique
+field string --fieldName nombreISO --notNull --unique
+field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+entity jpa --activeRecord false --schema organizaciones --identifierField paisid --class ar.gob.mincyt.organizaciones.domain.Pais
+field string --fieldName denominacion 
+field string --fieldName codigoISO2 
+field string --fieldName codigoISO3
+field string --fieldName nombreISO
+field string --fieldName gentilicio
+field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+entity jpa --activeRecord false --schema organizaciones --identifierField regionid --class ar.gob.mincyt.organizaciones.domain.Region
+field string --fieldName denominacion 
+field string --fieldName codigoISO 
+field string --fieldName nombreISO
+field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+field reference --fieldName pais --joinColumnName paisid --type ~.domain.Pais
+entity jpa --table subregion --activeRecord false --schema organizaciones --identifierField subregionid --class ar.gob.mincyt.organizaciones.domain.SubRegion
+field string --fieldName denominacion 
+field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+field reference --fieldName region --joinColumnName regionid --type ~.domain.Region
+entity jpa --activeRecord false --schema organizaciones --identifierField ciudadid --class ar.gob.mincyt.organizaciones.domain.Ciudad
+field string --fieldName denominacion 
+field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+field reference --fieldName region --joinColumnName subregionid --type ~.domain.SubRegion
+entity jpa --activeRecord false --schema organizaciones --identifierField barrioid --class ar.gob.mincyt.organizaciones.domain.Barrio
+field string --fieldName denominacion 
+field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado
+field reference --fieldName ciudad --joinColumnName ciudadid --type ~.domain.Ciudad
+repository jpa --interface ~.repository.EstadoRepository --entity ~.domain.Estado
+repository jpa --interface ~.repository.IdiomaRepository --entity ~.domain.Idioma
+repository jpa --interface ~.repository.PaisRepository --entity ~.domain.Pais
+repository jpa --interface ~.repository.RegionRepository --entity ~.domain.Region
+repository jpa --interface ~.repository.SubRegionRepository --entity ~.domain.SubRegion
+repository jpa --interface ~.repository.CiudadRepository --entity ~.domain.Ciudad
+repository jpa --interface ~.repository.BarrioRepository --entity ~.domain.Barrio
+service all --interfacePackage ~.service
+web mvc setup
+web mvc all --package ~.web
+// Spring Roo 1.3.1.RELEASE [rev f4f5256] log opened at 2015-05-05 19:53:10
+security setup
+web mvc all --package ~.web
