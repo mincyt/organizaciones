@@ -262,3 +262,21 @@ repository jpa --interface ~.repository.OrganizacionRepository --entity ~.domain
 // [failed] service all --interfacePackage ~.service
 service all --interfacePackage ~.service
 web mvc all --package ~.web
+// Spring Roo 1.3.1.RELEASE [rev f4f5256] log opened at 2015-05-06 09:56:12
+service all --interfacePackage ~.service
+// Spring Roo 1.3.1.RELEASE [rev f4f5256] log opened at 2015-05-06 09:57:19
+entity jpa --activeRecord false --schema organizaciones --identifierField tipodecategoriaid --class ar.gob.mincyt.organizaciones.domain.TipoDeCategoria
+field string --fieldName denominacion --notNull --unique 
+field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado --notNull
+repository jpa --interface ~.repository.TipoDeCategoriaRepository --entity ~.domain.TipoDeCategoria
+entity jpa --activeRecord false --schema organizaciones --identifierField organizacionid --class ar.gob.mincyt.organizaciones.domain.Organizacion
+field boolean --fieldName vigente --notNull --value true
+field reference --fieldName tipoDeCategoria --joinColumnName tipodecategoriaid --type ~.domain.TipoDeCategoria --notNull
+field reference --fieldName estado --joinColumnName estadoid --type ~.domain.Estado --notNull
+field date --fieldName fechaDeInicio --notNull --type java.util.Date
+field date --fieldName fechaDeFinalizacion --type java.util.Date
+repository jpa --interface ~.repository.OrganizacionRepository --entity ~.domain.Organizacion
+service all --interfacePackage ~.service
+web mvc all --package ~.web
+service all --interfacePackage ~.service
+web mvc all --package ~.web
