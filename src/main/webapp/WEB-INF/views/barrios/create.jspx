@@ -3,9 +3,9 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:create id="fc_ar_gob_mincyt_organizaciones_domain_Barrio" modelAttribute="barrio" path="/barrios" render="${empty dependencies}" z="hZI7TNkhApsXFBJlfoljckMq0aU=">
-        <field:input field="denominacion" id="c_ar_gob_mincyt_organizaciones_domain_Barrio_denominacion" z="WCsNoVvaoKZdzamx24quv6c0l/w="/>
-        <field:select field="estado" id="c_ar_gob_mincyt_organizaciones_domain_Barrio_estado" itemValue="estadoid" items="${estadoes}" path="/estadoes" z="vmSOJ1zkJCvi/Ym9n1mDRw+Wcz8="/>
-        <field:select field="ciudad" id="c_ar_gob_mincyt_organizaciones_domain_Barrio_ciudad" itemValue="ciudadid" items="${ciudads}" path="/ciudads" z="DVQK399TrAmXSYMDN0fPeKl70jw="/>
+        <field:input field="denominacion" id="c_ar_gob_mincyt_organizaciones_domain_Barrio_denominacion" required="true" z="lyqgifxiWn8BlkK8dY/30VXIPcA="/>
+        <field:select field="estado" id="c_ar_gob_mincyt_organizaciones_domain_Barrio_estado" itemValue="estadoid" items="${estados}" path="/estados" required="true" z="4uloL+rcX6/L2qqN4s49wnmIFcs="/>
+        <field:select field="ciudad" id="c_ar_gob_mincyt_organizaciones_domain_Barrio_ciudad" itemValue="ciudadid" items="${ciudades}" path="/ciudades" z="UOUCD0tDDrAHxhOXgY/uXGE1yeY="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_ar_gob_mincyt_organizaciones_domain_Barrio" render="${not empty dependencies}" z="8MgvBEr2fAUZ3rEauIwg3E+mhZM="/>
 </div>

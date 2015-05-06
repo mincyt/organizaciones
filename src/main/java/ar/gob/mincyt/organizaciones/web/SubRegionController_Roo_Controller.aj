@@ -36,24 +36,24 @@ privileged aspect SubRegionController_Roo_Controller {
     public String SubRegionController.create(@Valid SubRegion subRegion, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, subRegion);
-            return "subregions/create";
+            return "subregiones/create";
         }
         uiModel.asMap().clear();
         subRegionService.saveSubRegion(subRegion);
-        return "redirect:/subregions/" + encodeUrlPathSegment(subRegion.getSubregionid().toString(), httpServletRequest);
+        return "redirect:/subregiones/" + encodeUrlPathSegment(subRegion.getSubregionid().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", produces = "text/html")
     public String SubRegionController.createForm(Model uiModel) {
         populateEditForm(uiModel, new SubRegion());
-        return "subregions/create";
+        return "subregiones/create";
     }
     
     @RequestMapping(value = "/{subregionid}", produces = "text/html")
     public String SubRegionController.show(@PathVariable("subregionid") Long subregionid, Model uiModel) {
         uiModel.addAttribute("subregion", subRegionService.findSubRegion(subregionid));
         uiModel.addAttribute("itemId", subregionid);
-        return "subregions/show";
+        return "subregiones/show";
     }
     
     @RequestMapping(produces = "text/html")
@@ -61,30 +61,30 @@ privileged aspect SubRegionController_Roo_Controller {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("subregions", subRegionService.findSubRegionEntries(firstResult, sizeNo));
-            float nrOfPages = (float) subRegionService.countAllSubRegions() / sizeNo;
+            uiModel.addAttribute("subregiones", subRegionService.findSubRegionEntries(firstResult, sizeNo));
+            float nrOfPages = (float) subRegionService.countAllSubRegiones() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("subregions", subRegionService.findAllSubRegions());
+            uiModel.addAttribute("subregiones", subRegionService.findAllSubRegiones());
         }
-        return "subregions/list";
+        return "subregiones/list";
     }
     
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String SubRegionController.update(@Valid SubRegion subRegion, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, subRegion);
-            return "subregions/update";
+            return "subregiones/update";
         }
         uiModel.asMap().clear();
         subRegionService.updateSubRegion(subRegion);
-        return "redirect:/subregions/" + encodeUrlPathSegment(subRegion.getSubregionid().toString(), httpServletRequest);
+        return "redirect:/subregiones/" + encodeUrlPathSegment(subRegion.getSubregionid().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{subregionid}", params = "form", produces = "text/html")
     public String SubRegionController.updateForm(@PathVariable("subregionid") Long subregionid, Model uiModel) {
         populateEditForm(uiModel, subRegionService.findSubRegion(subregionid));
-        return "subregions/update";
+        return "subregiones/update";
     }
     
     @RequestMapping(value = "/{subregionid}", method = RequestMethod.DELETE, produces = "text/html")
@@ -94,13 +94,13 @@ privileged aspect SubRegionController_Roo_Controller {
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/subregions";
+        return "redirect:/subregiones";
     }
     
     void SubRegionController.populateEditForm(Model uiModel, SubRegion subRegion) {
         uiModel.addAttribute("subRegion", subRegion);
-        uiModel.addAttribute("estadoes", estadoService.findAllEstadoes());
-        uiModel.addAttribute("regions", regionService.findAllRegions());
+        uiModel.addAttribute("estados", estadoService.findAllEstados());
+        uiModel.addAttribute("regiones", regionService.findAllRegiones());
     }
     
     String SubRegionController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

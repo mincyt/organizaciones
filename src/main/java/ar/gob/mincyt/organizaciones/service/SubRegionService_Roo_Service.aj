@@ -9,10 +9,10 @@ import java.util.List;
 
 privileged aspect SubRegionService_Roo_Service {
     
-    public abstract long SubRegionService.countAllSubRegions();    
+    public abstract long SubRegionService.countAllSubRegiones();    
     public abstract void SubRegionService.deleteSubRegion(SubRegion subRegion);    
     public abstract SubRegion SubRegionService.findSubRegion(Long id);    
-    public abstract List<SubRegion> SubRegionService.findAllSubRegions();    
+    public abstract List<SubRegion> SubRegionService.findAllSubRegiones();    
     public abstract List<SubRegion> SubRegionService.findSubRegionEntries(int firstResult, int maxResults);    
     public abstract void SubRegionService.saveSubRegion(SubRegion subRegion);    
     public abstract SubRegion SubRegionService.updateSubRegion(SubRegion subRegion);    

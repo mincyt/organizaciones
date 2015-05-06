@@ -3,11 +3,11 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_ar_gob_mincyt_organizaciones_domain_Pais" idField="paisid" modelAttribute="pais" path="/paises" versionField="Version" z="GCrW83CCH2TLcCpC/Ks2tNnGRHQ=">
-        <field:input field="denominacion" id="c_ar_gob_mincyt_organizaciones_domain_Pais_denominacion" z="Cv0oVomWHBNrKAF9GV+U3BHTGUI="/>
-        <field:input field="codigoISO2" id="c_ar_gob_mincyt_organizaciones_domain_Pais_codigoISO2" z="Fxs2Er+3MyoA1EO2XU8iJ8Ka99k="/>
-        <field:input field="codigoISO3" id="c_ar_gob_mincyt_organizaciones_domain_Pais_codigoISO3" z="IokS2hJjiH+qQJ4uKFlr/3dldjE="/>
-        <field:input field="nombreISO" id="c_ar_gob_mincyt_organizaciones_domain_Pais_nombreISO" z="jbvaxNBik3vKCHL1CSMLn6S3is0="/>
-        <field:input field="gentilicio" id="c_ar_gob_mincyt_organizaciones_domain_Pais_gentilicio" z="tzOCPRnJdVIBhThVVHlryIHWerA="/>
-        <field:select field="estado" id="c_ar_gob_mincyt_organizaciones_domain_Pais_estado" itemValue="estadoid" items="${estadoes}" path="/estadoes" z="SV5SVZ0u+LHxbvNlS4tYDUuc3gI="/>
+        <field:input field="denominacion" id="c_ar_gob_mincyt_organizaciones_domain_Pais_denominacion" required="true" z="oRWxhJgfHNKvNT6pIuTIhEC2jAc="/>
+        <field:input field="codigoISO2" id="c_ar_gob_mincyt_organizaciones_domain_Pais_codigoISO2" required="true" z="i5mjkf8+k0D0YCFWznffE9K+sbU="/>
+        <field:input field="codigoISO3" id="c_ar_gob_mincyt_organizaciones_domain_Pais_codigoISO3" required="true" z="H2R5ClqeKpawC9jn3u+fq+ZrfZ0="/>
+        <field:input field="nombreISO" id="c_ar_gob_mincyt_organizaciones_domain_Pais_nombreISO" required="true" z="kDq7IpYNpIovia0abOzlujmT/24="/>
+        <field:input field="gentilicio" id="c_ar_gob_mincyt_organizaciones_domain_Pais_gentilicio" required="true" z="O8o0jEZSiF5oBFEmd1SxOViOFmo="/>
+        <field:select field="estado" id="c_ar_gob_mincyt_organizaciones_domain_Pais_estado" itemValue="estadoid" items="${estados}" path="/estados" required="true" z="8ZSKEri9VGJGO1+42mgr2jpG9fo="/>
     </form:update>
 </div>

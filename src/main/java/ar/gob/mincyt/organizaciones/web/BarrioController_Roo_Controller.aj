@@ -4,11 +4,14 @@
 package ar.gob.mincyt.organizaciones.web;
 
 import ar.gob.mincyt.organizaciones.domain.Barrio;
+import ar.gob.mincyt.organizaciones.domain.Estado;
 import ar.gob.mincyt.organizaciones.service.BarrioService;
 import ar.gob.mincyt.organizaciones.service.CiudadService;
 import ar.gob.mincyt.organizaciones.service.EstadoService;
 import ar.gob.mincyt.organizaciones.web.BarrioController;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +27,13 @@ import org.springframework.web.util.WebUtils;
 privileged aspect BarrioController_Roo_Controller {
     
     @Autowired
+    EstadoService BarrioController.estadoService;
+    
+    @Autowired
     BarrioService BarrioController.barrioService;
     
     @Autowired
     CiudadService BarrioController.ciudadService;
-    
-    @Autowired
-    EstadoService BarrioController.estadoService;
     
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String BarrioController.create(@Valid Barrio barrio, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
@@ -46,6 +49,11 @@ privileged aspect BarrioController_Roo_Controller {
     @RequestMapping(params = "form", produces = "text/html")
     public String BarrioController.createForm(Model uiModel) {
         populateEditForm(uiModel, new Barrio());
+        List<String[]> dependencies = new ArrayList<String[]>();
+        if (estadoService.countAllEstados() == 0) {
+            dependencies.add(new String[] { "estado", "estados" });
+        }
+        uiModel.addAttribute("dependencies", dependencies);
         return "barrios/create";
     }
     
@@ -99,8 +107,8 @@ privileged aspect BarrioController_Roo_Controller {
     
     void BarrioController.populateEditForm(Model uiModel, Barrio barrio) {
         uiModel.addAttribute("barrio", barrio);
-        uiModel.addAttribute("ciudads", ciudadService.findAllCiudads());
-        uiModel.addAttribute("estadoes", estadoService.findAllEstadoes());
+        uiModel.addAttribute("ciudades", ciudadService.findAllCiudades());
+        uiModel.addAttribute("estados", estadoService.findAllEstados());
     }
     
     String BarrioController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

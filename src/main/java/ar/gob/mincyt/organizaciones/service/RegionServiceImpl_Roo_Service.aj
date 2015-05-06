@@ -20,7 +20,7 @@ privileged aspect RegionServiceImpl_Roo_Service {
     @Autowired
     RegionRepository RegionServiceImpl.regionRepository;
     
-    public long RegionServiceImpl.countAllRegions() {
+    public long RegionServiceImpl.countAllRegiones() {
         return regionRepository.count();
     }
     
@@ -32,7 +32,7 @@ privileged aspect RegionServiceImpl_Roo_Service {
         return regionRepository.findOne(id);
     }
     
-    public List<Region> RegionServiceImpl.findAllRegions() {
+    public List<Region> RegionServiceImpl.findAllRegiones() {
         return regionRepository.findAll();
     }
     

@@ -9,10 +9,10 @@ import java.util.List;
 
 privileged aspect CiudadService_Roo_Service {
     
-    public abstract long CiudadService.countAllCiudads();    
+    public abstract long CiudadService.countAllCiudades();    
     public abstract void CiudadService.deleteCiudad(Ciudad ciudad);    
     public abstract Ciudad CiudadService.findCiudad(Long id);    
-    public abstract List<Ciudad> CiudadService.findAllCiudads();    
+    public abstract List<Ciudad> CiudadService.findAllCiudades();    
     public abstract List<Ciudad> CiudadService.findCiudadEntries(int firstResult, int maxResults);    
     public abstract void CiudadService.saveCiudad(Ciudad ciudad);    
     public abstract Ciudad CiudadService.updateCiudad(Ciudad ciudad);    

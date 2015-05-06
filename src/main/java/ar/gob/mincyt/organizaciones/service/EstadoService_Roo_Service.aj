@@ -9,10 +9,10 @@ import java.util.List;
 
 privileged aspect EstadoService_Roo_Service {
     
-    public abstract long EstadoService.countAllEstadoes();    
+    public abstract long EstadoService.countAllEstados();    
     public abstract void EstadoService.deleteEstado(Estado estado);    
     public abstract Estado EstadoService.findEstado(Long id);    
-    public abstract List<Estado> EstadoService.findAllEstadoes();    
+    public abstract List<Estado> EstadoService.findAllEstados();    
     public abstract List<Estado> EstadoService.findEstadoEntries(int firstResult, int maxResults);    
     public abstract void EstadoService.saveEstado(Estado estado);    
     public abstract Estado EstadoService.updateEstado(Estado estado);    

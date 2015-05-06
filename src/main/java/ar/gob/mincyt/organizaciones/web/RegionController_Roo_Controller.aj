@@ -3,12 +3,16 @@
 
 package ar.gob.mincyt.organizaciones.web;
 
+import ar.gob.mincyt.organizaciones.domain.Estado;
+import ar.gob.mincyt.organizaciones.domain.Pais;
 import ar.gob.mincyt.organizaciones.domain.Region;
 import ar.gob.mincyt.organizaciones.service.EstadoService;
 import ar.gob.mincyt.organizaciones.service.PaisService;
 import ar.gob.mincyt.organizaciones.service.RegionService;
 import ar.gob.mincyt.organizaciones.web.RegionController;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,36 +28,44 @@ import org.springframework.web.util.WebUtils;
 privileged aspect RegionController_Roo_Controller {
     
     @Autowired
-    RegionService RegionController.regionService;
-    
-    @Autowired
     EstadoService RegionController.estadoService;
     
     @Autowired
     PaisService RegionController.paisService;
     
+    @Autowired
+    RegionService RegionController.regionService;
+    
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String RegionController.create(@Valid Region region, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, region);
-            return "regions/create";
+            return "regiones/create";
         }
         uiModel.asMap().clear();
         regionService.saveRegion(region);
-        return "redirect:/regions/" + encodeUrlPathSegment(region.getRegionid().toString(), httpServletRequest);
+        return "redirect:/regiones/" + encodeUrlPathSegment(region.getRegionid().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", produces = "text/html")
     public String RegionController.createForm(Model uiModel) {
         populateEditForm(uiModel, new Region());
-        return "regions/create";
+        List<String[]> dependencies = new ArrayList<String[]>();
+        if (estadoService.countAllEstados() == 0) {
+            dependencies.add(new String[] { "estado", "estados" });
+        }
+        if (paisService.countAllPaises() == 0) {
+            dependencies.add(new String[] { "pais", "paises" });
+        }
+        uiModel.addAttribute("dependencies", dependencies);
+        return "regiones/create";
     }
     
     @RequestMapping(value = "/{regionid}", produces = "text/html")
     public String RegionController.show(@PathVariable("regionid") Long regionid, Model uiModel) {
         uiModel.addAttribute("region", regionService.findRegion(regionid));
         uiModel.addAttribute("itemId", regionid);
-        return "regions/show";
+        return "regiones/show";
     }
     
     @RequestMapping(produces = "text/html")
@@ -61,30 +73,30 @@ privileged aspect RegionController_Roo_Controller {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("regions", regionService.findRegionEntries(firstResult, sizeNo));
-            float nrOfPages = (float) regionService.countAllRegions() / sizeNo;
+            uiModel.addAttribute("regiones", regionService.findRegionEntries(firstResult, sizeNo));
+            float nrOfPages = (float) regionService.countAllRegiones() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("regions", regionService.findAllRegions());
+            uiModel.addAttribute("regiones", regionService.findAllRegiones());
         }
-        return "regions/list";
+        return "regiones/list";
     }
     
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String RegionController.update(@Valid Region region, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, region);
-            return "regions/update";
+            return "regiones/update";
         }
         uiModel.asMap().clear();
         regionService.updateRegion(region);
-        return "redirect:/regions/" + encodeUrlPathSegment(region.getRegionid().toString(), httpServletRequest);
+        return "redirect:/regiones/" + encodeUrlPathSegment(region.getRegionid().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{regionid}", params = "form", produces = "text/html")
     public String RegionController.updateForm(@PathVariable("regionid") Long regionid, Model uiModel) {
         populateEditForm(uiModel, regionService.findRegion(regionid));
-        return "regions/update";
+        return "regiones/update";
     }
     
     @RequestMapping(value = "/{regionid}", method = RequestMethod.DELETE, produces = "text/html")
@@ -94,12 +106,12 @@ privileged aspect RegionController_Roo_Controller {
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/regions";
+        return "redirect:/regiones";
     }
     
     void RegionController.populateEditForm(Model uiModel, Region region) {
         uiModel.addAttribute("region", region);
-        uiModel.addAttribute("estadoes", estadoService.findAllEstadoes());
+        uiModel.addAttribute("estados", estadoService.findAllEstados());
         uiModel.addAttribute("paises", paisService.findAllPaises());
     }
     

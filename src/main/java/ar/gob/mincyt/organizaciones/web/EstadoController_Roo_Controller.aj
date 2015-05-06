@@ -28,24 +28,24 @@ privileged aspect EstadoController_Roo_Controller {
     public String EstadoController.create(@Valid Estado estado, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, estado);
-            return "estadoes/create";
+            return "estados/create";
         }
         uiModel.asMap().clear();
         estadoService.saveEstado(estado);
-        return "redirect:/estadoes/" + encodeUrlPathSegment(estado.getEstadoid().toString(), httpServletRequest);
+        return "redirect:/estados/" + encodeUrlPathSegment(estado.getEstadoid().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", produces = "text/html")
     public String EstadoController.createForm(Model uiModel) {
         populateEditForm(uiModel, new Estado());
-        return "estadoes/create";
+        return "estados/create";
     }
     
     @RequestMapping(value = "/{estadoid}", produces = "text/html")
     public String EstadoController.show(@PathVariable("estadoid") Long estadoid, Model uiModel) {
         uiModel.addAttribute("estado", estadoService.findEstado(estadoid));
         uiModel.addAttribute("itemId", estadoid);
-        return "estadoes/show";
+        return "estados/show";
     }
     
     @RequestMapping(produces = "text/html")
@@ -53,30 +53,30 @@ privileged aspect EstadoController_Roo_Controller {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("estadoes", estadoService.findEstadoEntries(firstResult, sizeNo));
-            float nrOfPages = (float) estadoService.countAllEstadoes() / sizeNo;
+            uiModel.addAttribute("estados", estadoService.findEstadoEntries(firstResult, sizeNo));
+            float nrOfPages = (float) estadoService.countAllEstados() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("estadoes", estadoService.findAllEstadoes());
+            uiModel.addAttribute("estados", estadoService.findAllEstados());
         }
-        return "estadoes/list";
+        return "estados/list";
     }
     
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String EstadoController.update(@Valid Estado estado, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, estado);
-            return "estadoes/update";
+            return "estados/update";
         }
         uiModel.asMap().clear();
         estadoService.updateEstado(estado);
-        return "redirect:/estadoes/" + encodeUrlPathSegment(estado.getEstadoid().toString(), httpServletRequest);
+        return "redirect:/estados/" + encodeUrlPathSegment(estado.getEstadoid().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{estadoid}", params = "form", produces = "text/html")
     public String EstadoController.updateForm(@PathVariable("estadoid") Long estadoid, Model uiModel) {
         populateEditForm(uiModel, estadoService.findEstado(estadoid));
-        return "estadoes/update";
+        return "estados/update";
     }
     
     @RequestMapping(value = "/{estadoid}", method = RequestMethod.DELETE, produces = "text/html")
@@ -86,7 +86,7 @@ privileged aspect EstadoController_Roo_Controller {
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/estadoes";
+        return "redirect:/estados";
     }
     
     void EstadoController.populateEditForm(Model uiModel, Estado estado) {

@@ -34,5 +34,6 @@ public class Idioma {
      */
     @ManyToOne
     @JoinColumn(name = "estadoid")
+    @NotNull
     private Estado estado;
 }

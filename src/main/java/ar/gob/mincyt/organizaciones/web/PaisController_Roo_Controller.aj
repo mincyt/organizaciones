@@ -3,11 +3,14 @@
 
 package ar.gob.mincyt.organizaciones.web;
 
+import ar.gob.mincyt.organizaciones.domain.Estado;
 import ar.gob.mincyt.organizaciones.domain.Pais;
 import ar.gob.mincyt.organizaciones.service.EstadoService;
 import ar.gob.mincyt.organizaciones.service.PaisService;
 import ar.gob.mincyt.organizaciones.web.PaisController;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +26,10 @@ import org.springframework.web.util.WebUtils;
 privileged aspect PaisController_Roo_Controller {
     
     @Autowired
-    PaisService PaisController.paisService;
+    EstadoService PaisController.estadoService;
     
     @Autowired
-    EstadoService PaisController.estadoService;
+    PaisService PaisController.paisService;
     
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String PaisController.create(@Valid Pais pais, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
@@ -42,6 +45,11 @@ privileged aspect PaisController_Roo_Controller {
     @RequestMapping(params = "form", produces = "text/html")
     public String PaisController.createForm(Model uiModel) {
         populateEditForm(uiModel, new Pais());
+        List<String[]> dependencies = new ArrayList<String[]>();
+        if (estadoService.countAllEstados() == 0) {
+            dependencies.add(new String[] { "estado", "estados" });
+        }
+        uiModel.addAttribute("dependencies", dependencies);
         return "paises/create";
     }
     
@@ -95,7 +103,7 @@ privileged aspect PaisController_Roo_Controller {
     
     void PaisController.populateEditForm(Model uiModel, Pais pais) {
         uiModel.addAttribute("pais", pais);
-        uiModel.addAttribute("estadoes", estadoService.findAllEstadoes());
+        uiModel.addAttribute("estados", estadoService.findAllEstados());
     }
     
     String PaisController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

@@ -20,7 +20,7 @@ privileged aspect EstadoServiceImpl_Roo_Service {
     @Autowired
     EstadoRepository EstadoServiceImpl.estadoRepository;
     
-    public long EstadoServiceImpl.countAllEstadoes() {
+    public long EstadoServiceImpl.countAllEstados() {
         return estadoRepository.count();
     }
     
@@ -32,7 +32,7 @@ privileged aspect EstadoServiceImpl_Roo_Service {
         return estadoRepository.findOne(id);
     }
     
-    public List<Estado> EstadoServiceImpl.findAllEstadoes() {
+    public List<Estado> EstadoServiceImpl.findAllEstados() {
         return estadoRepository.findAll();
     }
     

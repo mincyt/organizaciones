@@ -6,6 +6,6 @@
         <field:input field="denominacion" id="c_ar_gob_mincyt_organizaciones_domain_Idioma_denominacion" required="true" z="uQYx7041IibXkC8DEgzbYgrJdvo="/>
         <field:input field="identificadorISO" id="c_ar_gob_mincyt_organizaciones_domain_Idioma_identificadorISO" required="true" z="rOPZKaUC667mvML5FrPnhlaAthU="/>
         <field:input field="nombreISO" id="c_ar_gob_mincyt_organizaciones_domain_Idioma_nombreISO" required="true" z="p8ZeZdcDM2ZKjoIZ5Z3/gdDAByQ="/>
-        <field:select field="estado" id="c_ar_gob_mincyt_organizaciones_domain_Idioma_estado" itemValue="estadoid" items="${estadoes}" path="/estadoes" z="ti0w0883CjjEPXTFS5iSff/Ltb0="/>
+        <field:select field="estado" id="c_ar_gob_mincyt_organizaciones_domain_Idioma_estado" itemValue="estadoid" items="${estados}" path="/estados" required="true" z="w0K7I6MwenEv0j7NVfyJSYLHAUE="/>
     </form:update>
 </div>

@@ -3,11 +3,14 @@
 
 package ar.gob.mincyt.organizaciones.web;
 
+import ar.gob.mincyt.organizaciones.domain.Estado;
 import ar.gob.mincyt.organizaciones.domain.Idioma;
 import ar.gob.mincyt.organizaciones.service.EstadoService;
 import ar.gob.mincyt.organizaciones.service.IdiomaService;
 import ar.gob.mincyt.organizaciones.web.IdiomaController;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +26,10 @@ import org.springframework.web.util.WebUtils;
 privileged aspect IdiomaController_Roo_Controller {
     
     @Autowired
-    IdiomaService IdiomaController.idiomaService;
+    EstadoService IdiomaController.estadoService;
     
     @Autowired
-    EstadoService IdiomaController.estadoService;
+    IdiomaService IdiomaController.idiomaService;
     
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String IdiomaController.create(@Valid Idioma idioma, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
@@ -42,6 +45,11 @@ privileged aspect IdiomaController_Roo_Controller {
     @RequestMapping(params = "form", produces = "text/html")
     public String IdiomaController.createForm(Model uiModel) {
         populateEditForm(uiModel, new Idioma());
+        List<String[]> dependencies = new ArrayList<String[]>();
+        if (estadoService.countAllEstados() == 0) {
+            dependencies.add(new String[] { "estado", "estados" });
+        }
+        uiModel.addAttribute("dependencies", dependencies);
         return "idiomas/create";
     }
     
@@ -95,7 +103,7 @@ privileged aspect IdiomaController_Roo_Controller {
     
     void IdiomaController.populateEditForm(Model uiModel, Idioma idioma) {
         uiModel.addAttribute("idioma", idioma);
-        uiModel.addAttribute("estadoes", estadoService.findAllEstadoes());
+        uiModel.addAttribute("estados", estadoService.findAllEstados());
     }
     
     String IdiomaController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

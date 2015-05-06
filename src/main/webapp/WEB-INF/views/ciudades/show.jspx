@@ -2,7 +2,7 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_ar_gob_mincyt_organizaciones_domain_Ciudad" object="${ciudad}" path="/ciudads" z="U/y4mg+yoWfTwQ/pz2WLJfzFMm0=">
+    <page:show id="ps_ar_gob_mincyt_organizaciones_domain_Ciudad" object="${ciudad}" path="/ciudades" z="iV2WwggK/2mHHr0nHWxJOjL3QNI=">
         <field:display field="denominacion" id="s_ar_gob_mincyt_organizaciones_domain_Ciudad_denominacion" object="${ciudad}" z="fwwbiNmPbGiF6yU4pvpvbATXPM4="/>
         <field:display field="estado" id="s_ar_gob_mincyt_organizaciones_domain_Ciudad_estado" object="${ciudad}" z="BMn7HWm5C0q7Jk+C1S9JtDzj9Aw="/>
         <field:display field="region" id="s_ar_gob_mincyt_organizaciones_domain_Ciudad_region" object="${ciudad}" z="gxOZe+6CimLY7H5biYdKkSmRX0g="/>

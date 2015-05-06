@@ -20,7 +20,7 @@ privileged aspect SubRegionServiceImpl_Roo_Service {
     @Autowired
     SubRegionRepository SubRegionServiceImpl.subRegionRepository;
     
-    public long SubRegionServiceImpl.countAllSubRegions() {
+    public long SubRegionServiceImpl.countAllSubRegiones() {
         return subRegionRepository.count();
     }
     
@@ -32,7 +32,7 @@ privileged aspect SubRegionServiceImpl_Roo_Service {
         return subRegionRepository.findOne(id);
     }
     
-    public List<SubRegion> SubRegionServiceImpl.findAllSubRegions() {
+    public List<SubRegion> SubRegionServiceImpl.findAllSubRegiones() {
         return subRegionRepository.findAll();
     }
     

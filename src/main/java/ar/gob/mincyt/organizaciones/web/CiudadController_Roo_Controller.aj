@@ -4,11 +4,14 @@
 package ar.gob.mincyt.organizaciones.web;
 
 import ar.gob.mincyt.organizaciones.domain.Ciudad;
+import ar.gob.mincyt.organizaciones.domain.Estado;
 import ar.gob.mincyt.organizaciones.service.CiudadService;
 import ar.gob.mincyt.organizaciones.service.EstadoService;
 import ar.gob.mincyt.organizaciones.service.SubRegionService;
 import ar.gob.mincyt.organizaciones.web.CiudadController;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +27,10 @@ import org.springframework.web.util.WebUtils;
 privileged aspect CiudadController_Roo_Controller {
     
     @Autowired
-    CiudadService CiudadController.ciudadService;
+    EstadoService CiudadController.estadoService;
     
     @Autowired
-    EstadoService CiudadController.estadoService;
+    CiudadService CiudadController.ciudadService;
     
     @Autowired
     SubRegionService CiudadController.subRegionService;
@@ -36,24 +39,29 @@ privileged aspect CiudadController_Roo_Controller {
     public String CiudadController.create(@Valid Ciudad ciudad, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, ciudad);
-            return "ciudads/create";
+            return "ciudades/create";
         }
         uiModel.asMap().clear();
         ciudadService.saveCiudad(ciudad);
-        return "redirect:/ciudads/" + encodeUrlPathSegment(ciudad.getCiudadid().toString(), httpServletRequest);
+        return "redirect:/ciudades/" + encodeUrlPathSegment(ciudad.getCiudadid().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", produces = "text/html")
     public String CiudadController.createForm(Model uiModel) {
         populateEditForm(uiModel, new Ciudad());
-        return "ciudads/create";
+        List<String[]> dependencies = new ArrayList<String[]>();
+        if (estadoService.countAllEstados() == 0) {
+            dependencies.add(new String[] { "estado", "estados" });
+        }
+        uiModel.addAttribute("dependencies", dependencies);
+        return "ciudades/create";
     }
     
     @RequestMapping(value = "/{ciudadid}", produces = "text/html")
     public String CiudadController.show(@PathVariable("ciudadid") Long ciudadid, Model uiModel) {
         uiModel.addAttribute("ciudad", ciudadService.findCiudad(ciudadid));
         uiModel.addAttribute("itemId", ciudadid);
-        return "ciudads/show";
+        return "ciudades/show";
     }
     
     @RequestMapping(produces = "text/html")
@@ -61,30 +69,30 @@ privileged aspect CiudadController_Roo_Controller {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("ciudads", ciudadService.findCiudadEntries(firstResult, sizeNo));
-            float nrOfPages = (float) ciudadService.countAllCiudads() / sizeNo;
+            uiModel.addAttribute("ciudades", ciudadService.findCiudadEntries(firstResult, sizeNo));
+            float nrOfPages = (float) ciudadService.countAllCiudades() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("ciudads", ciudadService.findAllCiudads());
+            uiModel.addAttribute("ciudades", ciudadService.findAllCiudades());
         }
-        return "ciudads/list";
+        return "ciudades/list";
     }
     
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String CiudadController.update(@Valid Ciudad ciudad, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, ciudad);
-            return "ciudads/update";
+            return "ciudades/update";
         }
         uiModel.asMap().clear();
         ciudadService.updateCiudad(ciudad);
-        return "redirect:/ciudads/" + encodeUrlPathSegment(ciudad.getCiudadid().toString(), httpServletRequest);
+        return "redirect:/ciudades/" + encodeUrlPathSegment(ciudad.getCiudadid().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{ciudadid}", params = "form", produces = "text/html")
     public String CiudadController.updateForm(@PathVariable("ciudadid") Long ciudadid, Model uiModel) {
         populateEditForm(uiModel, ciudadService.findCiudad(ciudadid));
-        return "ciudads/update";
+        return "ciudades/update";
     }
     
     @RequestMapping(value = "/{ciudadid}", method = RequestMethod.DELETE, produces = "text/html")
@@ -94,13 +102,13 @@ privileged aspect CiudadController_Roo_Controller {
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/ciudads";
+        return "redirect:/ciudades";
     }
     
     void CiudadController.populateEditForm(Model uiModel, Ciudad ciudad) {
         uiModel.addAttribute("ciudad", ciudad);
-        uiModel.addAttribute("estadoes", estadoService.findAllEstadoes());
-        uiModel.addAttribute("subregions", subRegionService.findAllSubRegions());
+        uiModel.addAttribute("estados", estadoService.findAllEstados());
+        uiModel.addAttribute("subregiones", subRegionService.findAllSubRegiones());
     }
     
     String CiudadController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

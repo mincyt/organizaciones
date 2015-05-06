@@ -4,8 +4,8 @@ import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/regions")
+@RequestMapping("/regiones")
 @Controller
-@RooWebScaffold(path = "regions", formBackingObject = Region.class)
+@RooWebScaffold(path = "regiones", formBackingObject = Region.class)
 public class RegionController {
 }

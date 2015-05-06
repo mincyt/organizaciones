@@ -20,7 +20,7 @@ privileged aspect CiudadServiceImpl_Roo_Service {
     @Autowired
     CiudadRepository CiudadServiceImpl.ciudadRepository;
     
-    public long CiudadServiceImpl.countAllCiudads() {
+    public long CiudadServiceImpl.countAllCiudades() {
         return ciudadRepository.count();
     }
     
@@ -32,7 +32,7 @@ privileged aspect CiudadServiceImpl_Roo_Service {
         return ciudadRepository.findOne(id);
     }
     
-    public List<Ciudad> CiudadServiceImpl.findAllCiudads() {
+    public List<Ciudad> CiudadServiceImpl.findAllCiudades() {
         return ciudadRepository.findAll();
     }
     
