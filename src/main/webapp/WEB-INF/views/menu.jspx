@@ -31,5 +31,13 @@
             <menu:item id="i_subregion_new" messageCode="global_menu_new" url="/subregiones?form" z="user-managed"/>
             <menu:item id="i_subregion_list" messageCode="global_menu_list" url="/subregiones?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
         </menu:category>
+        <menu:category id="c_tipodecategoria" z="JP0eXd94uI9jSVkW2bkgcdP3Tng=">
+            <menu:item id="i_tipodecategoria_new" messageCode="global_menu_new" url="/tiposdecategorias?form" z="G7Lkk0qjQD7dGvCXug91nNiJwQ0="/>
+            <menu:item id="i_tipodecategoria_list" messageCode="global_menu_list" url="/tiposdecategorias?page=1&amp;size=${empty param.size ? 10 : param.size}" z="ikASfeGYpT5wMNTfE+GCUkfRI6I="/>
+        </menu:category>
+        <menu:category id="c_organizacion" z="uqF8w9q4e5S/8O6qkGMOveG6gYU=">
+            <menu:item id="i_organizacion_new" messageCode="global_menu_new" url="/organizaciones?form" z="YM52hhlqgiRxFEMxvVm0xHSC2Ug="/>
+            <menu:item id="i_organizacion_list" messageCode="global_menu_list" url="/organizaciones?page=1&amp;size=${empty param.size ? 10 : param.size}" z="aET0D/e730ks9Gx8vZ/n1KMfmkk="/>
+        </menu:category>
     </menu:menu>
 </div>

@@ -7,16 +7,20 @@ import ar.gob.mincyt.organizaciones.domain.Barrio;
 import ar.gob.mincyt.organizaciones.domain.Ciudad;
 import ar.gob.mincyt.organizaciones.domain.Estado;
 import ar.gob.mincyt.organizaciones.domain.Idioma;
+import ar.gob.mincyt.organizaciones.domain.Organizacion;
 import ar.gob.mincyt.organizaciones.domain.Pais;
 import ar.gob.mincyt.organizaciones.domain.Region;
 import ar.gob.mincyt.organizaciones.domain.SubRegion;
+import ar.gob.mincyt.organizaciones.domain.TipoDeCategoria;
 import ar.gob.mincyt.organizaciones.service.BarrioService;
 import ar.gob.mincyt.organizaciones.service.CiudadService;
 import ar.gob.mincyt.organizaciones.service.EstadoService;
 import ar.gob.mincyt.organizaciones.service.IdiomaService;
+import ar.gob.mincyt.organizaciones.service.OrganizacionService;
 import ar.gob.mincyt.organizaciones.service.PaisService;
 import ar.gob.mincyt.organizaciones.service.RegionService;
 import ar.gob.mincyt.organizaciones.service.SubRegionService;
+import ar.gob.mincyt.organizaciones.service.TipoDeCategoriaService;
 import ar.gob.mincyt.organizaciones.web.ApplicationConversionServiceFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -40,6 +44,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     IdiomaService ApplicationConversionServiceFactoryBean.idiomaService;
     
     @Autowired
+    OrganizacionService ApplicationConversionServiceFactoryBean.organizacionService;
+    
+    @Autowired
     PaisService ApplicationConversionServiceFactoryBean.paisService;
     
     @Autowired
@@ -47,6 +54,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     
     @Autowired
     SubRegionService ApplicationConversionServiceFactoryBean.subRegionService;
+    
+    @Autowired
+    TipoDeCategoriaService ApplicationConversionServiceFactoryBean.tipoDeCategoriaService;
     
     public Converter<Barrio, String> ApplicationConversionServiceFactoryBean.getBarrioToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<ar.gob.mincyt.organizaciones.domain.Barrio, java.lang.String>() {
@@ -144,6 +154,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<Organizacion, String> ApplicationConversionServiceFactoryBean.getOrganizacionToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<ar.gob.mincyt.organizaciones.domain.Organizacion, java.lang.String>() {
+            public String convert(Organizacion organizacion) {
+                return new StringBuilder().append(organizacion.getFechaDeInicio()).append(' ').append(organizacion.getFechaDeFinalizacion()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Organizacion> ApplicationConversionServiceFactoryBean.getIdToOrganizacionConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, ar.gob.mincyt.organizaciones.domain.Organizacion>() {
+            public ar.gob.mincyt.organizaciones.domain.Organizacion convert(java.lang.Long id) {
+                return organizacionService.findOrganizacion(id);
+            }
+        };
+    }
+    
+    public Converter<String, Organizacion> ApplicationConversionServiceFactoryBean.getStringToOrganizacionConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, ar.gob.mincyt.organizaciones.domain.Organizacion>() {
+            public ar.gob.mincyt.organizaciones.domain.Organizacion convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Organizacion.class);
+            }
+        };
+    }
+    
     public Converter<Pais, String> ApplicationConversionServiceFactoryBean.getPaisToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<ar.gob.mincyt.organizaciones.domain.Pais, java.lang.String>() {
             public String convert(Pais pais) {
@@ -216,6 +250,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<TipoDeCategoria, String> ApplicationConversionServiceFactoryBean.getTipoDeCategoriaToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<ar.gob.mincyt.organizaciones.domain.TipoDeCategoria, java.lang.String>() {
+            public String convert(TipoDeCategoria tipoDeCategoria) {
+                return new StringBuilder().append(tipoDeCategoria.getDenominacion()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, TipoDeCategoria> ApplicationConversionServiceFactoryBean.getIdToTipoDeCategoriaConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, ar.gob.mincyt.organizaciones.domain.TipoDeCategoria>() {
+            public ar.gob.mincyt.organizaciones.domain.TipoDeCategoria convert(java.lang.Long id) {
+                return tipoDeCategoriaService.findTipoDeCategoria(id);
+            }
+        };
+    }
+    
+    public Converter<String, TipoDeCategoria> ApplicationConversionServiceFactoryBean.getStringToTipoDeCategoriaConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, ar.gob.mincyt.organizaciones.domain.TipoDeCategoria>() {
+            public ar.gob.mincyt.organizaciones.domain.TipoDeCategoria convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), TipoDeCategoria.class);
+            }
+        };
+    }
+    
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
         registry.addConverter(getBarrioToStringConverter());
         registry.addConverter(getIdToBarrioConverter());
@@ -229,6 +287,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getIdiomaToStringConverter());
         registry.addConverter(getIdToIdiomaConverter());
         registry.addConverter(getStringToIdiomaConverter());
+        registry.addConverter(getOrganizacionToStringConverter());
+        registry.addConverter(getIdToOrganizacionConverter());
+        registry.addConverter(getStringToOrganizacionConverter());
         registry.addConverter(getPaisToStringConverter());
         registry.addConverter(getIdToPaisConverter());
         registry.addConverter(getStringToPaisConverter());
@@ -238,6 +299,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getSubRegionToStringConverter());
         registry.addConverter(getIdToSubRegionConverter());
         registry.addConverter(getStringToSubRegionConverter());
+        registry.addConverter(getTipoDeCategoriaToStringConverter());
+        registry.addConverter(getIdToTipoDeCategoriaConverter());
+        registry.addConverter(getStringToTipoDeCategoriaConverter());
     }
     
     public void ApplicationConversionServiceFactoryBean.afterPropertiesSet() {
