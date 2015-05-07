@@ -44,10 +44,10 @@
                 <menu:item id="i_organizacion_new" messageCode="global_menu_new" url="/organizaciones?form" z="YM52hhlqgiRxFEMxvVm0xHSC2Ug="/>
                 <menu:item id="i_organizacion_list" messageCode="global_menu_list" url="/organizaciones?page=1&amp;size=${empty param.size ? 10 : param.size}" z="aET0D/e730ks9Gx8vZ/n1KMfmkk="/>
             </menu:category>
+	        <menu:category id="c_nombredeorganizacion" z="u2rAkoSdufq4t0HbLwnBpi7kW4o=">
+	            <menu:item id="i_nombredeorganizacion_new" messageCode="global_menu_new" url="/nombresdeorganizacion?form" z="uO6a1NEnHaPzeM2ilhmxz7f0gAo="/>
+	            <menu:item id="i_nombredeorganizacion_list" messageCode="global_menu_list" url="/nombresdeorganizacion?page=1&amp;size=${empty param.size ? 10 : param.size}" z="Duc3jvpAIExN2lxWlcrEDkZgoqM="/>
+	        </menu:category>
         </sec:authorize>
-        <menu:category id="c_nombredeorganizacion" z="u2rAkoSdufq4t0HbLwnBpi7kW4o=">
-            <menu:item id="i_nombredeorganizacion_new" messageCode="global_menu_new" url="/nombresdeorganizacion?form" z="uO6a1NEnHaPzeM2ilhmxz7f0gAo="/>
-            <menu:item id="i_nombredeorganizacion_list" messageCode="global_menu_list" url="/nombresdeorganizacion?page=1&amp;size=${empty param.size ? 10 : param.size}" z="Duc3jvpAIExN2lxWlcrEDkZgoqM="/>
-        </menu:category>
     </menu:menu>
 </div>
