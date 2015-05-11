@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/jquery/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/jquery/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_ar_gob_mincyt_organizaciones_domain_Organizacion" items="${organizacions}" z="vzu4GqFpGCMI55dGvbAQh+nQ/hQ=">
+        <table:table data="${organizacions}" id="l_ar_gob_mincyt_organizaciones_domain_Organizacion" path="/organizacions" typeIdFieldName="organizacionid" z="AHx4O+b1fVhHYs/arj7eyg8PQVo=">
+            <table:column id="c_ar_gob_mincyt_organizaciones_domain_Organizacion_vigente" property="vigente" z="hZC6FGmUA/YRi/PtU7czySphWIk="/>
+            <table:column id="c_ar_gob_mincyt_organizaciones_domain_Organizacion_tipoDeCategoria" property="tipoDeCategoria" z="dft9yTiOHbBj/rweVU3fiM04wRs="/>
+            <table:column id="c_ar_gob_mincyt_organizaciones_domain_Organizacion_estado" property="estado" z="q5QuvaAG+WLMZjRQXXAIrKmDyDM="/>
+            <table:column date="true" dateTimePattern="${organizacion_fechadeinicio_date_format}" id="c_ar_gob_mincyt_organizaciones_domain_Organizacion_fechaDeInicio" property="fechaDeInicio" z="ob08p8NBc1fO27BUp31Fop9eUIY="/>
+            <table:column date="true" dateTimePattern="${organizacion_fechadefinalizacion_date_format}" id="c_ar_gob_mincyt_organizaciones_domain_Organizacion_fechaDeFinalizacion" property="fechaDeFinalizacion" z="yu+uqH/YBfo72dvQdwFwl6azies="/>
+        </table:table>
+    </page:list>
+</div>

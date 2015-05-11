@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/jquery/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/jquery/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_ar_gob_mincyt_organizaciones_domain_Organizacion" object="${organizacion}" path="/organizacions" z="yIkO1Z/9Lsrmh6XDHcFDas1xySQ=">
+        <field:display field="vigente" id="s_ar_gob_mincyt_organizaciones_domain_Organizacion_vigente" object="${organizacion}" z="8PpnkHlyA/DJU3kpA6ojnnyfHhI="/>
+        <field:display field="tipoDeCategoria" id="s_ar_gob_mincyt_organizaciones_domain_Organizacion_tipoDeCategoria" object="${organizacion}" z="Dg7fuJvN9qVgj8dvI4/HgOcaMH8="/>
+        <field:display field="estado" id="s_ar_gob_mincyt_organizaciones_domain_Organizacion_estado" object="${organizacion}" z="31nWQtbdIsWDXXCyZrRBG2TSlPE="/>
+        <field:display date="true" dateTimePattern="${organizacion_fechadeinicio_date_format}" field="fechaDeInicio" id="s_ar_gob_mincyt_organizaciones_domain_Organizacion_fechaDeInicio" object="${organizacion}" z="WMwfTAMPrfp2g4dlH+NymSfdOQw="/>
+        <field:display date="true" dateTimePattern="${organizacion_fechadefinalizacion_date_format}" field="fechaDeFinalizacion" id="s_ar_gob_mincyt_organizaciones_domain_Organizacion_fechaDeFinalizacion" object="${organizacion}" z="Z4opOELmSqWaR+WAn0WFX3sy6OA="/>
+    </page:show>
+</div>

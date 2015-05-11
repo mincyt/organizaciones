@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/jquery/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/jquery/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_ar_gob_mincyt_organizaciones_domain_Idioma" object="${idioma}" path="/idiomas" z="V3RUYI6m+1LaBvw2eZ1Oq1HCL/U=">
+        <field:display field="denominacion" id="s_ar_gob_mincyt_organizaciones_domain_Idioma_denominacion" object="${idioma}" z="rovTf4ZHKGxl99bPL0ftX3Cltg8="/>
+        <field:display field="identificadorISO" id="s_ar_gob_mincyt_organizaciones_domain_Idioma_identificadorISO" object="${idioma}" z="axhgXcCIbLBE8Y+Zu91AZBfWP+U="/>
+        <field:display field="nombreISO" id="s_ar_gob_mincyt_organizaciones_domain_Idioma_nombreISO" object="${idioma}" z="3+SMCiMDkonvm1CA9tJ3ylWblLU="/>
+        <field:display field="estado" id="s_ar_gob_mincyt_organizaciones_domain_Idioma_estado" object="${idioma}" z="xY/80mN4QXhPY+ywIZXuexj/x8U="/>
+    </page:show>
+</div>
