@@ -1,0 +1,12 @@
+authserver/.classpath
+authserver/.gitignore
+authserver/.settings/
+authserver/bin/
+resource/.classpath
+resource/.gitignore
+resource/.settings/
+resource/bin/
+ui/.classpath
+ui/.gitignore
+ui/.settings/
+ui/bin/
