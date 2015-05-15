@@ -52,9 +52,9 @@ function($rootScope, $scope, $http, $location, $route) {
 
 }).controller('home', function($scope, $http, $location) {
 
-//	$http.get('organizacion/').success(function(data) {
-//		$scope.greeting = data;
-//	})
+	$http.get('organizacion/public/bleh').success(function(data) {
+		$scope.greeting = data;
+	})
 	
 }).controller('contacto', function($scope, $http, $location) {
 
