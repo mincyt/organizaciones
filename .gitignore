@@ -10,6 +10,6 @@ ui/.classpath
 ui/.gitignore
 ui/.settings/
 ui/bin/
-uthserver/.project
+authserver/.project
 resource/.project
 ui/.project
