@@ -9,7 +9,7 @@ class RelacionOrganizacion {
 	Integer precedenciaGeneral = 0
 	Organizacion organizacionOrigen
 	Organizacion organizacionRelacionada
-	TaxonomiaOrganizacional taxonomiaOrganizacional
+	// TaxonomiaOrganizacional taxonomiaOrganizacional
 	Estado estado
 	TipoDeRelacion tipoDeRelacion
 		

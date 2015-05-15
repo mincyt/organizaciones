@@ -20,7 +20,7 @@ class NombreDeOrganizacion {
 	@Column(name="nombredeorganizacionid")
 	Long id
 
-		String denominacion
+	String denominacion
 	@Column(name="essigla")
 	Boolean esSigla
 	@Column(name="esdenominacionpreferida")
@@ -28,7 +28,9 @@ class NombreDeOrganizacion {
 	@ManyToOne
 	@JoinColumn(name="organizacionid")
 	Organizacion organizacion
-	//Idioma idioma
+	@ManyToOne
+	@JoinColumn(name="idiomaid")
+	Idioma idioma
 	@ManyToOne
 	@JoinColumn(name="estadoid")
 	Estado estado

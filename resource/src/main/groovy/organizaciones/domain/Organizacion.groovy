@@ -15,7 +15,6 @@ import org.hibernate.annotations.FilterDef
 
 
 @Entity
-@FilterDef(name="espreferida")
 class Organizacion {
 
 	@Id
@@ -29,8 +28,10 @@ class Organizacion {
 	Date fechaDeInicio
 	Boolean vigente = true
 	
-
-	// TipoDeCategoria tipoDeCategoria
+	@ManyToOne
+	@JoinColumn(name="tipodecategoriaid")
+	TipoDeCategoria tipoDeCategoria
+	
 	@ManyToOne
 	@JoinColumn(name="estadoid")
 	Estado estado
