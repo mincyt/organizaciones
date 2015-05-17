@@ -1,4 +1,22 @@
+<<<<<<< HEAD
 /target/
 .classpath
 .project
 .settings/
+=======
+authserver/.classpath
+authserver/.gitignore
+authserver/.settings/
+authserver/bin/
+resource/.classpath
+resource/.gitignore
+resource/.settings/
+resource/bin/
+ui/.classpath
+ui/.gitignore
+ui/.settings/
+ui/bin/
+authserver/.project
+resource/.project
+ui/.project
+>>>>>>> 38e081404bb3decd174f7f170cc3b49d8134ac2b

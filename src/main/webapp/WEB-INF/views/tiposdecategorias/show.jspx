@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
-    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
-    <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_ar_gob_mincyt_organizaciones_domain_TipoDeCategoria" object="${tipodecategoria}" path="/tiposdecategorias" z="IKs74hS1weGj3WbE4Re2eGo9ucY=">
-        <field:display field="denominacion" id="s_ar_gob_mincyt_organizaciones_domain_TipoDeCategoria_denominacion" object="${tipodecategoria}" z="oC1zSzDBbQvPxEnfsaNbXxgy9bc="/>
-        <field:display field="estado" id="s_ar_gob_mincyt_organizaciones_domain_TipoDeCategoria_estado" object="${tipodecategoria}" z="j5TB4hUpgJmK/iwk9oy32KpIKpE="/>
-    </page:show>
-</div>
