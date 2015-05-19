@@ -24,9 +24,9 @@ class OrganizacionesApplication {
 	static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run OrganizacionesApplication, args
 		
-		OrganizacionRepository organizacionRepository = ctx.getBean(OrganizacionRepository) 
+		// OrganizacionRepository organizacionRepository = ctx.getBean(OrganizacionRepository) 
 		
-		organizacionRepository.findAll().each {println it}
+		// organizacionRepository.findAll().each {println it}
     }
 
 	@Configuration
