@@ -1,1 +1,15 @@
 <h1>Listado de Organizaciones</h1>
+<h2 ng-hide="!q" ng-cloak>Buscando "{{q}}"</h2>
+<div infinite-scroll='organizaciones.nextPage()'
+	infinite-scroll-disabled='organizaciones.busy'
+	infinite-scroll-distance='4'>
+	<div ng-repeat='organizacion in organizaciones.items'>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<span>{{organizacion.denominacion}}
+					({{organizacion.organizacion.nombreCorto}})</span>
+			</div>
+		</div>
+	</div>
+	<div ng-show='organizaciones.busy'>Cargando datos...</div>
+</div>

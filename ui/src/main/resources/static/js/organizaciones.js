@@ -1,10 +1,14 @@
-angular.module('organizaciones', [ 'ngRoute' ]).config(function($routeProvider, $httpProvider) {
-	  
+angular.module('organizaciones', [ 'ngRoute','infinite-scroll' ]).config(function($routeProvider, $httpProvider) {
+	
 	$routeProvider.when('/', {
 		templateUrl : 'home.html',
 		controller : 'home'
 	})
 	.when('/organizaciones', {
+		templateUrl : 'organizaciones.html',
+		controller : 'organizaciones'
+	})
+	.when('/organizaciones/buscar/:que', {
 		templateUrl : 'organizaciones.html',
 		controller : 'organizaciones'
 	})
@@ -18,6 +22,7 @@ angular.module('organizaciones', [ 'ngRoute' ]).config(function($routeProvider, 
 	})
 	.otherwise('/');
 
+	  
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 }).controller('navigation',
@@ -60,6 +65,37 @@ function($rootScope, $scope, $http, $location, $route) {
 
 }).controller('organizacion', function($scope, $http, $location) {
 	
-}).controller('organizaciones', function($scope, $http, $location) {
-
+}).controller('organizaciones', function($scope, $http, $location, $routeParams, Organizaciones) {
+	$scope.q = $routeParams.que;
+	
+	$scope.organizaciones = new Organizaciones();
+	
+}).factory('Organizaciones', function($http) {
+	var Organizaciones = function() {
+		this.items = [];
+		this.busy = false;
+		this.after = '';
+		this.pos = 0;
+		this.cuantos = 20;
+	}
+	
+	Organizaciones.prototype.nextPage = function() {
+		if (this.busy) return;
+		
+		this.busy = true;
+		var that = this;
+		
+		var url = 'organizacion/public/todas?start='+this.pos+'&rows='+this.cuantos;
+		$http.get(url).
+			success(function(data) {
+		      var items = data.content;
+		      for (var i = 0; i < items.length; i++) {
+		        that.items.push(items[i]);
+		      }
+		      that.pos += items.length;
+		      that.busy = false;
+			}.bind(this));
+		this.busy = false;
+	}
+	return Organizaciones;
 });

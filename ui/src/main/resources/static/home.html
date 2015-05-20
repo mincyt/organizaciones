@@ -3,9 +3,9 @@
 	<p>Este es el Registro de Organizaciones del SICyTAr.</p>
 	<p>Puede buscar entre {{cuantas}} organizaciones.</p>
 
-	<form role="search">
-		<div class="form-group">
-			<input type="text" class="form-control" placeholder="Un nombre o una sigla">
+	<form role="organizaciones" action="/organizaciones" method="GET">
+		<div class="form-group" ">
+			<input id="q" name="q" type="text" class="form-control" placeholder="Un nombre o una sigla">
 		</div>
 		<button type="submit" class="btn btn-lg btn-primary">Buscar</button>
 	</form>

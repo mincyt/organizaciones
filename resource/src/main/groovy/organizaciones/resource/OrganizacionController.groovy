@@ -36,4 +36,16 @@ class OrganizacionController {
 		nombreDeOrganizacionRepository.findByDenominacionLikeIgnoreCase('%'+q+'%', new PageRequest(start, rows))
 	}
 
+	@RequestMapping('/:id')
+	def buscarPorId(def @RequestParam('id') id) {
+		organizacionRepository.find(id)
+	}
+	
+	@RequestMapping('/todas')
+	def todas(
+		@RequestParam(value='start',required=false, defaultValue='0') int start, 
+		@RequestParam(value='rows',required=false, defaultValue='5') int rows) {
+		nombreDeOrganizacionRepository.findAll(new PageRequest(start, rows))
+	}
+
 }
