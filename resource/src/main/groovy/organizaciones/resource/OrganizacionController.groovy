@@ -33,7 +33,8 @@ class OrganizacionController {
 		if (q.size() < 3) {
 			//throw new MethodArgumentNotValidException("q lenght should be greater than 3")	
 		}
-		nombreDeOrganizacionRepository.findByDenominacionLikeIgnoreCase('%'+q+'%', new PageRequest(start, rows))
+		//nombreDeOrganizacionRepository.findByDenominacionLikeIgnoreCase('%'+q+'%', new PageRequest(start, rows))
+		organizacionRepository.findByNombresDenominacionLikeIgnoreCase('%'+q+'%', new PageRequest(start, rows))
 	}
 
 	@RequestMapping('/:id')

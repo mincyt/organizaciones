@@ -1,4 +1,4 @@
-angular.module('organizaciones', [ 'ngRoute','infinite-scroll' ]).config(function($routeProvider, $httpProvider) {
+angular.module('organizaciones', [ 'ui.bootstrap', 'ngRoute', 'infinite-scroll' ]).config(function($routeProvider, $httpProvider) {
 	
 	$routeProvider.when('/', {
 		templateUrl : 'home.html',
@@ -61,22 +61,52 @@ function($rootScope, $scope, $http, $location, $route) {
 		$scope.cuantas = data;
 	})
 	
+	$scope.buscar = function() {
+		$location.path('/organizaciones/buscar/'+$scope.q);
+	}
+	
 }).controller('contacto', function($scope, $http, $location) {
 
 }).controller('organizacion', function($scope, $http, $location) {
 	
 }).controller('organizaciones', function($scope, $http, $location, $routeParams, Organizaciones) {
+
 	$scope.q = $routeParams.que;
 	
-	$scope.organizaciones = new Organizaciones();
+	$scope.pageChanged = function() {
+	  $scope.organizaciones.traerDesde(pageNo);
+	  $log.log('Page changed to: ' + $scope.currentPage);
+	};
+
+	$scope.maxSize = 10;
+	$scope.organizaciones = new Organizaciones($scope.q);
 	
 }).factory('Organizaciones', function($http) {
-	var Organizaciones = function() {
+	var Organizaciones = function(q) {
 		this.items = [];
 		this.busy = false;
-		this.after = '';
-		this.pos = 0;
-		this.cuantos = 20;
+		this.start = 0; // para scroll infinito
+		this.rows = 10;
+		this.page = 1;
+		this.q = q;
+		this.traerDesde();
+	}
+	
+	
+	Organizaciones.prototype.traerDesde = function() {
+		var start = (this.page - 1) || 0;
+		
+		var url = 'organizacion/public/todas?start=' + start + '&rows=' + this.rows;
+		if (this.q) {
+			url = 'organizacion/public/buscar?q=' + this.q + '&start=' + start + '&rows=' + this.rows;
+		}
+		
+		var that = this;
+		$http.get(url).
+			success(function(data) {
+				that.items = data.content;
+				that.total = data.totalElements;			
+		});
 	}
 	
 	Organizaciones.prototype.nextPage = function() {
@@ -85,17 +115,16 @@ function($rootScope, $scope, $http, $location, $route) {
 		this.busy = true;
 		var that = this;
 		
-		var url = 'organizacion/public/todas?start='+this.pos+'&rows='+this.cuantos;
+		var url = 'organizacion/public/todas?start='+this.start+'&rows='+this.rows;
 		$http.get(url).
 			success(function(data) {
 		      var items = data.content;
 		      for (var i = 0; i < items.length; i++) {
 		        that.items.push(items[i]);
 		      }
-		      that.pos += items.length;
+		      that.start += items.length;
 		      that.busy = false;
-			}.bind(this));
-		this.busy = false;
+		}.bind(this));
 	}
 	return Organizaciones;
 });

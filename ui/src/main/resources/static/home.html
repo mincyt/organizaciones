@@ -3,10 +3,11 @@
 	<p>Este es el Registro de Organizaciones del SICyTAr.</p>
 	<p>Puede buscar entre {{cuantas}} organizaciones.</p>
 
-	<form role="organizaciones" action="/organizaciones" method="GET">
-		<div class="form-group" ">
-			<input id="q" name="q" type="text" class="form-control" placeholder="Un nombre o una sigla">
+	<form role="organizaciones" ng-submit="buscar()">
+		<div class="form-group">
+			<input name="q" ng-model="q" type="text" class="form-control" placeholder="Un nombre o una sigla"
+			ng-minlength="3" ng-trim="true" ng-required="true" >
 		</div>
-		<button type="submit" class="btn btn-lg btn-primary">Buscar</button>
+		<input type="submit" class="btn btn-lg btn-primary" value="Buscar"/>
 	</form>
 </div>
