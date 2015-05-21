@@ -3,23 +3,28 @@ package organizaciones.domain
 
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
-import javax.persistence.OneToOne
+import javax.persistence.OneToMany
 import javax.validation.constraints.NotNull
 
-import org.hibernate.annotations.Filter
-import org.hibernate.annotations.FilterDef
+import com.fasterxml.jackson.annotation.JsonIdentityInfo
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.ObjectIdGenerators
 
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator, 
+                  property = "organizacionid")
 class Organizacion {
 
 	@Id
 	@GeneratedValue
 	@Column(name="organizacionid")
+	@JsonIgnore
 	Long id
 	
 	@Column(name="fechadefinalizacion")
@@ -39,6 +44,9 @@ class Organizacion {
 	@NotNull
 	@Column(name="nombrecorto")
 	String nombreCorto
+	
+	@OneToMany(mappedBy="organizacion", fetch=FetchType.EAGER)
+	Set<NombreDeOrganizacion> nombres
 	
 	static hasMany = [
 		escalafones : Escalafon,
@@ -89,7 +97,7 @@ class Organizacion {
 	}
 	
 	def String nombrePreferido() {
-		//nombres.find{ n -> n.esDenominacionPreferida}
+		nombres.find{ n -> n.esDenominacionPreferida}?.denominacion
 	}
 	
 	def String toString() {

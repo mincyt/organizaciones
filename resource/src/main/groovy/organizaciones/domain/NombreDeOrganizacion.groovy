@@ -8,16 +8,20 @@ import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 import javax.persistence.Table
 
-import org.hibernate.annotations.Filter
-import org.hibernate.annotations.Filters
+import com.fasterxml.jackson.annotation.JsonIdentityInfo
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.ObjectIdGenerators
 
 @Entity
 @Table(name="nombredeorganizacion")
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator,
+	property = "nombredeorganizacionid")
 class NombreDeOrganizacion {
 
 	@Id
 	@GeneratedValue
 	@Column(name="nombredeorganizacionid")
+	@JsonIgnore
 	Long id
 
 	String denominacion

@@ -45,7 +45,8 @@ class OrganizacionController {
 	def todas(
 		@RequestParam(value='start',required=false, defaultValue='0') int start, 
 		@RequestParam(value='rows',required=false, defaultValue='5') int rows) {
-		nombreDeOrganizacionRepository.findAll(new PageRequest(start, rows))
+		//nombreDeO
+		organizacionRepository.findAll(new PageRequest(start, rows))
 	}
 
 }
