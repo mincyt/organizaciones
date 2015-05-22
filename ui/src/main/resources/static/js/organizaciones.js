@@ -1,4 +1,4 @@
-angular.module('organizaciones', [ 'ui.bootstrap', 'ngRoute', 'infinite-scroll' ]).config(function($routeProvider, $httpProvider) {
+angular.module('organizaciones', [ 'ui.bootstrap', 'ngResource', 'ngRoute', 'infinite-scroll' ]).config(function($routeProvider, $httpProvider) {
 	
 	$routeProvider.when('/', {
 		templateUrl : 'home.html',
@@ -57,7 +57,7 @@ function($rootScope, $scope, $http, $location, $route) {
 
 }).controller('home', function($scope, $http, $location) {
 	
-	$http.get('organizacion/public/cuantas').success(function(data) {
+	$http.get('public/organizacion/cuantas').success(function(data) {
 		$scope.cuantas = data;
 	})
 	
@@ -103,11 +103,11 @@ function($rootScope, $scope, $http, $location, $route) {
 		this.mostrandoBusqueda = false;
 		this.buscado = '';
 		
-		var url = 'organizacion/public?start=' + start + '&rows=' + this.rows;
-		if (this.q) {
+		var url = 'public/organizacion/?start=' + start + '&rows=' + this.rows;
+		if (this.q && '' != q) {
 			this.mostrandoBusqueda = true;
 			this.buscado = this.q;
-			url = 'organizacion/public/buscar?q=' + this.q + '&start=' + start + '&rows=' + this.rows;
+			url = 'public/organizacion/buscar?q=' + this.q + '&start=' + start + '&rows=' + this.rows;
 		}
 		
 		var that = this;

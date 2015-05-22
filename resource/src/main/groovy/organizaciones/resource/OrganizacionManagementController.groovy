@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @EnableOAuth2Resource
-@RequestMapping('/management')
+@RequestMapping('/management/organizacion')
 class OrganizacionManagementController {
 
 	@RequestMapping('/nope')

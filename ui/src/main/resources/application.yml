@@ -4,9 +4,12 @@ security:
     password: none
 zuul:
   routes:
-    organizacion:
-      path: /organizacion/**
-      url: http://localhost:9001/organizacion
+    public/organizacion:
+      path: /public/organizacion/**
+      url: http://localhost:9001/public/organizacion
+    management/organizacion:
+      path: /management/organizacion/**
+      url: http://localhost:9001/management/organizacion
     user:
       path: /user/**
       url: http://localhost:9999/uaa/user
@@ -15,7 +18,7 @@ spring:
     sso:
       home:
         secure: false
-        path: /,/**,/*.html,/organizacion/public/**
+        path: /,/**,/*.html,/public/**
     client:
       accessTokenUri: http://localhost:9999/uaa/oauth/token
       userAuthorizationUri: http://localhost:9999/uaa/oauth/authorize
