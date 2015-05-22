@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-/target/
-.classpath
-.project
-.settings/
-=======
 authserver/.classpath
 authserver/.gitignore
 authserver/.settings/
@@ -12,6 +6,7 @@ resource/.classpath
 resource/.gitignore
 resource/.settings/
 resource/bin/
+resource/src/main/resources/application.properties
 ui/.classpath
 ui/.gitignore
 ui/.settings/
@@ -19,4 +14,7 @@ ui/bin/
 authserver/.project
 resource/.project
 ui/.project
->>>>>>> 38e081404bb3decd174f7f170cc3b49d8134ac2b
+.classpath
+.project
+.settings/
+.springBeans
