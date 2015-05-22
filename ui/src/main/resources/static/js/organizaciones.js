@@ -67,7 +67,9 @@ function($rootScope, $scope, $http, $location, $route) {
 	
 }).controller('contacto', function($scope, $http, $location) {
 
-}).controller('organizacion', function($scope, $http, $location) {
+}).controller('organizacion', function($scope, $location, $routeParams, Organizacion) {
+	$scope.id = $routeParams.id;
+	$
 	
 }).controller('organizaciones', function($scope, $http, $location, $routeParams, Organizaciones) {
 
@@ -81,6 +83,8 @@ function($rootScope, $scope, $http, $location, $route) {
 	$scope.maxSize = 10;
 	$scope.organizaciones = new Organizaciones($scope.q);
 	
+}).factory('Organizacion', function($resource) {
+	return $resource('/api/entries/:id');
 }).factory('Organizaciones', function($http) {
 	var Organizaciones = function(q) {
 		this.items = [];
@@ -90,14 +94,19 @@ function($rootScope, $scope, $http, $location, $route) {
 		this.page = 1;
 		this.q = q;
 		this.traerDesde();
+		this.mostrandoBusqueda = false;
 	}
 	
 	
 	Organizaciones.prototype.traerDesde = function() {
 		var start = (this.page - 1) || 0;
+		this.mostrandoBusqueda = false;
+		this.buscado = '';
 		
-		var url = 'organizacion/public/todas?start=' + start + '&rows=' + this.rows;
+		var url = 'organizacion/public?start=' + start + '&rows=' + this.rows;
 		if (this.q) {
+			this.mostrandoBusqueda = true;
+			this.buscado = this.q;
 			url = 'organizacion/public/buscar?q=' + this.q + '&start=' + start + '&rows=' + this.rows;
 		}
 		
@@ -115,7 +124,7 @@ function($rootScope, $scope, $http, $location, $route) {
 		this.busy = true;
 		var that = this;
 		
-		var url = 'organizacion/public/todas?start='+this.start+'&rows='+this.rows;
+		var url = 'organizacion/public?start='+this.start+'&rows='+this.rows;
 		$http.get(url).
 			success(function(data) {
 		      var items = data.content;

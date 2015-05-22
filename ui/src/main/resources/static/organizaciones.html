@@ -1,25 +1,24 @@
 <h1>Listado de Organizaciones</h1>
 
 <form role="organizaciones" ng-submit="organizaciones.traerDesde()">
-<div class="input-group">
-	<input name="q" ng-model="organizaciones.q" type="text" class="form-control" placeholder="Un nombre o una sigla"
-	ng-minlength="3" ng-trim="true" ng-required="true" >
-	<span class="input-group-btn">
-		<input type="submit" class="btn btn-primary" value="Buscar"/>
-	</span>
-</div>
+	<div class="input-group">
+		<input name="q" ng-model="organizaciones.q" type="text" class="form-control" placeholder="Un nombre o una sigla"
+		ng-minlength="3" ng-trim="true" >
+		<span class="input-group-btn">
+			<input type="submit" class="btn btn-primary" value="Buscar"/>
+		</span>
+	</div>
 </form>
  
-
-<div ng-hide="!organizaciones.q" ng-cloak>
-	<h4>{{organizaciones.total}} encontrada(s)</h4>
+<div ng-hide="!organizaciones.mostrandoBusqueda" ng-cloak>
+	<h4>"{{organizaciones.buscado}}":{{organizaciones.total}} encontrada(s)</h4>
 </div>
 
 <div ng-repeat='organizacion in organizaciones.items'>
 	<div class="panel panel-default">
 		<div class="panel-body">
-			<h3>{{organizacion.nombrePreferido}}
-				({{organizacion.nombreCorto}})</h3>
+			<h3><a href="#/organizacion/{{organizacion.organizacionid}}">{{organizacion.nombrePreferido}}
+				({{organizacion.nombreCorto}})</a></h3>
 			<div>
 				<h4>Nombres conocidos de la organizaci&oacute;n</h4>
 				<ul>
