@@ -8,20 +8,17 @@ import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 import javax.persistence.Table
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo
-import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.ObjectIdGenerators
+import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonProperty
 
 @Entity
 @Table(name="nombredeorganizacion")
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator,
-	property = "nombredeorganizacionid")
 class NombreDeOrganizacion {
 
 	@Id
 	@GeneratedValue
 	@Column(name="nombredeorganizacionid")
-	@JsonIgnore
+	@JsonProperty("nombredeorganizacionId")
 	Long id
 
 	String denominacion
@@ -31,6 +28,7 @@ class NombreDeOrganizacion {
 	Boolean esDenominacionPreferida
 	@ManyToOne
 	@JoinColumn(name="organizacionid")
+	@JsonBackReference
 	Organizacion organizacion
 	@ManyToOne
 	@JoinColumn(name="idiomaid")

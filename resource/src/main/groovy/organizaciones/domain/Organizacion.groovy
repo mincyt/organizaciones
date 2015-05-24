@@ -9,23 +9,22 @@ import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
+import javax.persistence.Transient
 import javax.validation.constraints.NotNull
 
 import com.fasterxml.jackson.annotation.JsonGetter
-import com.fasterxml.jackson.annotation.JsonIdentityInfo
-import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.ObjectIdGenerators
+import com.fasterxml.jackson.annotation.JsonManagedReference
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonRawValue
 
 
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator, 
-                  property = "organizacionid")
 class Organizacion {
 
 	@Id
 	@GeneratedValue
 	@Column(name="organizacionid")
-	@JsonIgnore
+	@JsonProperty("organizacionId")
 	Long id
 	
 	@Column(name="fechadefinalizacion")
@@ -48,6 +47,10 @@ class Organizacion {
 	
 	@OneToMany(mappedBy="organizacion", fetch=FetchType.EAGER)
 	Set<NombreDeOrganizacion> nombres
+	
+	@Transient
+	@JsonRawValue
+	String changos = '{"prueba": "string convertido en json!!"}'
 	
 	static hasMany = [
 		escalafones : Escalafon,

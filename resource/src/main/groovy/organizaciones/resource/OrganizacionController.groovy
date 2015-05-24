@@ -42,7 +42,7 @@ class OrganizacionController {
 		organizacionRepository.findOne(id)
 	}
 	
-	@RequestMapping(value='/',method=RequestMethod.GET)
+	@RequestMapping(value='',method=RequestMethod.GET)
 	def todas(
 		@RequestParam(value='start',required=false, defaultValue='0') int start, 
 		@RequestParam(value='rows',required=false, defaultValue='5') int rows) {

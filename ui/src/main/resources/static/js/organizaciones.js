@@ -67,10 +67,13 @@ function($rootScope, $scope, $http, $location, $route) {
 	
 }).controller('contacto', function($scope, $http, $location) {
 
-}).controller('organizacion', function($scope, $location, $routeParams, Organizacion) {
-	$scope.id = $routeParams.id;
-	$
-	
+}).controller('organizacion', function($scope, $location, $routeParams, OrganizacionResource) {
+	$scope.id = $routeParams.organizacionId;
+	OrganizacionResource.get({organizacionId:$scope.id}).$promise.then(
+			function(organizacion){
+				$scope.organizacion = organizacion
+				console.log($scope.organizacion)
+			});
 }).controller('organizaciones', function($scope, $http, $location, $routeParams, Organizaciones) {
 
 	$scope.q = $routeParams.que;
@@ -83,8 +86,10 @@ function($rootScope, $scope, $http, $location, $route) {
 	$scope.maxSize = 10;
 	$scope.organizaciones = new Organizaciones($scope.q);
 	
-}).factory('Organizacion', function($resource) {
-	return $resource('/api/entries/:id');
+}).factory('OrganizacionResource', function($resource) {
+	
+	return $resource('/public/organizacion/:organizacionId',{organizacionId:'@id'});
+	
 }).factory('Organizaciones', function($http) {
 	var Organizaciones = function(q) {
 		this.items = [];
@@ -104,7 +109,7 @@ function($rootScope, $scope, $http, $location, $route) {
 		this.buscado = '';
 		
 		var url = 'public/organizacion/?start=' + start + '&rows=' + this.rows;
-		if (this.q && '' != q) {
+		if (this.q && '' != this.q) {
 			this.mostrandoBusqueda = true;
 			this.buscado = this.q;
 			url = 'public/organizacion/buscar?q=' + this.q + '&start=' + start + '&rows=' + this.rows;
