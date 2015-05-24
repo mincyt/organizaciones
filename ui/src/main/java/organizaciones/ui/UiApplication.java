@@ -1,4 +1,4 @@
-package demo;
+package organizaciones.ui;
 
 import java.io.IOException;
 
