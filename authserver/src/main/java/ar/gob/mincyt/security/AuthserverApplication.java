@@ -34,9 +34,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import ar.gob.mincyt.security.domain.User;
-import ar.gob.mincyt.security.repository.UserRepository;
-
 @SpringBootApplication
 @Controller
 @SessionAttributes("authorizationRequest")
@@ -125,14 +122,17 @@ public class AuthserverApplication extends WebMvcConfigurerAdapter {
 			converter.setKeyPair(keyPair);
 			return converter;
 		}
-
+		
 		@Override
 		public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 			clients.inMemory()
 					.withClient("organizaciones")
 					.secret("organizacionessecret")
 					.authorizedGrantTypes("authorization_code", "refresh_token",
-							"password").scopes("openid");
+							"password")
+							.scopes("openid")
+							.autoApprove(true)
+							;
 		}
 
 		@Override
