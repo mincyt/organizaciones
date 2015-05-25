@@ -6,6 +6,8 @@ import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.orm.jpa.EntityScan;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -14,6 +16,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -29,10 +34,14 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import ar.gob.mincyt.security.domain.User;
+import ar.gob.mincyt.security.repository.UserRepository;
+
 @SpringBootApplication
 @Controller
 @SessionAttributes("authorizationRequest")
 @EnableResourceServer
+@EntityScan
 public class AuthserverApplication extends WebMvcConfigurerAdapter {
 
 	@RequestMapping("/user")
@@ -48,7 +57,15 @@ public class AuthserverApplication extends WebMvcConfigurerAdapter {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(AuthserverApplication.class, args);
+		ApplicationContext ctx = SpringApplication.run(AuthserverApplication.class, args);
+//		UserRepository userRepository = (UserRepository)ctx.getBean(UserRepository.class);
+//		PasswordEncoder cuds = (PasswordEncoder) ctx.getBean(PasswordEncoder.class);
+//		cuds.encode("admin")
+//		cuds.createUser("mcarboni", "mcarboni@mincyt.gob.ar", "mcarboni");
+//		User admin = userRepository.findByUsername("Administrador");
+//		admin.setEmail("mcarboni@mincyt.gob.ar");
+//		admin.setPassword(cuds.encode("admin"));
+//		userRepository.save(admin);
 	}
 
 	@Configuration
@@ -70,11 +87,26 @@ public class AuthserverApplication extends WebMvcConfigurerAdapter {
 			// @formatter:on
 		}
 
+		private static PasswordEncoder encoder;
+
+	    @Autowired
+	    private UserDetailsService customUserDetailsService;
+
 		@Override
 		protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-			auth.parentAuthenticationManager(authenticationManager);
+			// auth.parentAuthenticationManager(authenticationManager);
+			auth.userDetailsService(customUserDetailsService).passwordEncoder(
+					passwordEncoder());
 		}
-	}
+
+		@Bean
+	    public PasswordEncoder passwordEncoder() {
+	        if(encoder == null) {
+	            encoder = new BCryptPasswordEncoder();
+	        }
+
+	        return encoder;
+	    }}
 
 	@Configuration
 	@EnableAuthorizationServer
