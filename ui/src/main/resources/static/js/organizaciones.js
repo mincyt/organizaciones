@@ -72,7 +72,7 @@ function($rootScope, $scope, $http, $location, $route) {
 	OrganizacionResource.get({organizacionId:$scope.id}).$promise.then(
 			function(organizacion){
 				$scope.organizacion = organizacion
-				console.log($scope.organizacion)
+				// console.log($scope.organizacion)
 			});
 }).controller('organizaciones', function($scope, $http, $location, $routeParams, Organizaciones) {
 
@@ -86,10 +86,14 @@ function($rootScope, $scope, $http, $location, $route) {
 	$scope.maxSize = 10;
 	$scope.organizaciones = new Organizaciones($scope.q);
 	
-}).factory('OrganizacionResource', function($resource) {
+}).factory('OrganizacionResource', function($resource, $http) {
+	var resource = $resource('/public/organizacion/:organizacionId',{organizacionId:'@id'});
 	
-	return $resource('/public/organizacion/:organizacionId',{organizacionId:'@id'});
+	resource.relacionadas = function(organizacionId) {
+		return $http.get('/public/organizacion/relacionadasCon/'+organizacionId);
+	}
 	
+	return resource;
 }).factory('Organizaciones', function($http) {
 	var Organizaciones = function(q) {
 		this.items = [];
@@ -141,4 +145,45 @@ function($rootScope, $scope, $http, $location, $route) {
 		}.bind(this));
 	}
 	return Organizaciones;
+}).directive('nombresDeOrganizacion', function() {
+	  return {
+		    restrict: "E",
+		    scope: {
+		    	'nombres' : '='
+		    },
+		    controller: function($scope) {
+
+		    },
+		    transclude: true,
+		    templateUrl:"view/nombres-de-organizacion.html",
+//		    require:["^solr", "solrFacetGroup"],
+		    link: function(scope, element, attrs, ctrls){
+
+		    }
+		  }
+}).directive('relaciones', function(OrganizacionResource) {
+	  return {
+		    restrict: "E",
+		    scope: {
+		    	'organizacionId' : '='
+		    },
+		    controller: function($scope) {
+		    },
+//		    transclude: true,
+		    templateUrl:"view/relaciones.html",
+//		    require:["^solr", "solrFacetGroup"],
+		    compile: function(scope, element, attrs, ctrls){
+		    	return {
+		    		pre : function(scope, iElement, iAttrs, controller)  {
+//		    			console.log(scope.organizacionId);
+//		    			OrganizacionResource.relacionadas(scope.organizacionId).success(
+//		    					function(data) {
+//		    						console.log(data);
+//		    						scope.relacionadas = data;
+//		    					} 
+//		    			);
+		    		}
+		    	}
+		    }
+		  }
 });

@@ -1,14 +1,12 @@
 <h1>{{organizacion.nombrePreferido}}</h1>
   <tabset>
     <tab heading="Nombres Conocidos">
-		<ul>
-			<li ng-repeat="nombre in organizacion.nombres">{{nombre.denominacion}}</li>
-		</ul>
+		<nombres-de-organizacion nombres="organizacion.nombres"></nombres-de-organizacion>
     </tab>
 <!--     <tab heading="Vigencia"> -->
     
 <!--     </tab> -->
     <tab heading="Relaciones">
-		    	
+		 <relaciones organizacion-id="organizacion.organizacionId"></relaciones>
     </tab>
   </tabset>
