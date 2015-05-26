@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import organizaciones.repository.NombreDeOrganizacionRepository
 import organizaciones.repository.OrganizacionRepository
+import organizaciones.repository.RelacionOrganizacionRepository
 
 @RestController
 @EnableOAuth2Resource
@@ -21,6 +22,9 @@ class OrganizacionController {
 	
 	@Autowired
 	NombreDeOrganizacionRepository nombreDeOrganizacionRepository;
+	
+	@Autowired
+	RelacionOrganizacionRepository relacionOrganizacionRepository;
 	
 	@RequestMapping('/cuantas')
 	def cuantas() {
@@ -50,4 +54,20 @@ class OrganizacionController {
 		organizacionRepository.findAll(new PageRequest(start, rows))
 	}
 
+	@RequestMapping(value='/relacionadasCon/{id}',method=RequestMethod.GET)
+	def relacionadasCon(def @PathVariable('id') long id,
+		@RequestParam(value='start',required=false, defaultValue='0') int start,
+		@RequestParam(value='rows',required=false, defaultValue='5') int rows) {
+
+		relacionOrganizacionRepository.findByOrganizacionOrigenId(id,new PageRequest(start, rows))
+	}
+	
+	@RequestMapping(value='/seRelacionaCon/{id}',method=RequestMethod.GET)
+	def seRelacionaCon(def @PathVariable('id') long id,
+		@RequestParam(value='start',required=false, defaultValue='0') int start,
+		@RequestParam(value='rows',required=false, defaultValue='5') int rows) {
+
+		relacionOrganizacionRepository.findByOrganizacionRelacionadaId(id,new PageRequest(start, rows))
+	}
+	
 }

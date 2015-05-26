@@ -1,7 +1,3 @@
-var culo = function(data) {
-	console.log(data);
-}
-
 var solr = angular.module("solr", [])
 
 .controller('facetGroupController', function($scope){
