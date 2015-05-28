@@ -70,4 +70,11 @@ class OrganizacionController {
 		relacionOrganizacionRepository.findByOrganizacionRelacionadaId(id,new PageRequest(start, rows))
 	}
 	
+	@RequestMapping(value="/{id}/ancestros/{relacion}")
+	def seRelacionaCon(def @PathVariable('id') long id,
+		def @PathVariable('relacion') String relacion) {
+		//TODO: problema del zuul, no redirige uris con espacios
+		relacion = relacion.replaceAll('_', ' ')
+		organizacionRepository.ancestros(relacion, id)
+	}
 }

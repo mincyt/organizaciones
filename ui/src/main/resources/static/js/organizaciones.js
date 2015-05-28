@@ -72,7 +72,6 @@ function($rootScope, $scope, $http, $location, $route) {
 	OrganizacionResource.get({organizacionId:$scope.id}).$promise.then(
 			function(organizacion){
 				$scope.organizacion = organizacion
-				// console.log($scope.organizacion)
 			});
 }).controller('organizaciones', function($scope, $http, $location, $routeParams, Organizaciones) {
 
@@ -91,6 +90,10 @@ function($rootScope, $scope, $http, $location, $route) {
 	
 	resource.relacionadas = function(organizacionId) {
 		return $http.get('/public/organizacion/relacionadasCon/'+organizacionId);
+	}
+	
+	resource.ancestros = function(relacion, organizacionId) {
+		return $http.get('/public/organizacion/'+organizacionId+'/ancestros/'+relacion.replace(/ /g, '_'));
 	}
 	
 	return resource;
@@ -149,7 +152,8 @@ function($rootScope, $scope, $http, $location, $route) {
 	  return {
 		    restrict: "E",
 		    scope: {
-		    	'nombres' : '='
+		    	'nombres' : '=',
+		    	'editable' : '='
 		    },
 		    controller: function($scope) {
 
@@ -161,6 +165,32 @@ function($rootScope, $scope, $http, $location, $route) {
 
 		    }
 		  }
+}).directive('ancestros', function(OrganizacionResource) {
+	  return {
+		    restrict: "E",
+		    scope: {
+		    	'relacion': '@',
+		    	'organizacionId' : '='
+		    },
+		    controller: function($scope) {
+		    },
+		    templateUrl:"view/ancestros.html",
+		    compile: function(scope, element, attrs, ctrls){
+		    	return {
+		    		pre : function(scope, iElement, iAttrs, controller)  {
+		    		      scope.$watch('organizacionId',
+		    		        function ( newVal, oldVal){
+		    		    	  if (newVal) {
+		    		    		  OrganizacionResource.ancestros(scope.relacion, newVal)
+		    		    		  	.success(function(data) { 
+		    		    		  		scope.ancestros = data 
+		    		    		  	});
+		    		    	  }
+		    		      });
+		    		}
+		    	}
+		    }
+		  }
 }).directive('relaciones', function(OrganizacionResource) {
 	  return {
 		    restrict: "E",
@@ -169,19 +199,11 @@ function($rootScope, $scope, $http, $location, $route) {
 		    },
 		    controller: function($scope) {
 		    },
-//		    transclude: true,
 		    templateUrl:"view/relaciones.html",
-//		    require:["^solr", "solrFacetGroup"],
 		    compile: function(scope, element, attrs, ctrls){
 		    	return {
 		    		pre : function(scope, iElement, iAttrs, controller)  {
-//		    			console.log(scope.organizacionId);
-//		    			OrganizacionResource.relacionadas(scope.organizacionId).success(
-//		    					function(data) {
-//		    						console.log(data);
-//		    						scope.relacionadas = data;
-//		    					} 
-//		    			);
+
 		    		}
 		    	}
 		    }
