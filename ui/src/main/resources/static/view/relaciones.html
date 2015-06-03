@@ -1,3 +1,21 @@
-<ul>
-	<li ng-repeat="relacion in relacionadas">{{relacion.organizacionRelacionada.nombrePreferido}}</li>
-</ul>
+<h5>Organizaciones Relacionadas</h5>
+<div ng-repeat="relacion in relacionadas">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<strong>{{relacion.tipoDeRelacion.denominacion}}</strong>: "<a href="#/organizacion/{{relacion.organizacionRelacionada.organizacionId}}">{{relacion.organizacionRelacionada.nombrePreferido}}</a>"
+		</div>
+	</div>
+</div>
+<h5>Organizaciones con las que se relaciona:</h5>
+<div ng-repeat="relacion in seRelacionaCon.content">
+	<div class="panel panel-default">
+		<div class="panel-body">
+		 "<a href="#/organizacion/{{relacion.organizacionOrigen.organizacionId}}">{{relacion.organizacionOrigen.nombrePreferido}}</a>" <strong>{{relacion.tipoDeRelacion.denominacion}}</strong>: "{{relacion.organizacionRelacionada.nombrePreferido}}"
+		</div>
+	</div>
+</div>
+<pagination ng-change="cambiarPagina(organizacionId, page)"
+	total-items="seRelacionaCon.totalElements" ng-model="page"
+	max-size="10" class="pagination-sm" boundary-links="true"
+	rotate="false" num-pages="seRelacionaCon.totalPages"></pagination>
+

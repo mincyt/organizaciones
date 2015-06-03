@@ -88,8 +88,20 @@ function($rootScope, $scope, $http, $location, $route, $window) {
 }).factory('OrganizacionResource', function($resource, $http) {
 	var resource = $resource('/public/organizacion/:organizacionId',{organizacionId:'@id'});
 	
-	resource.relacionadas = function(organizacionId) {
-		return $http.get('/public/organizacion/relacionadasCon/'+organizacionId);
+	resource.relacionadas = function(organizacionId, start, rows) {
+		if (!start) start = 0;
+		if (!rows) rows = 5;
+
+		var url = '/public/organizacion/relacionadasCon/'+organizacionId+'?start='+start+'&rows='+rows;
+		return $http.get(url);
+	}
+	
+	resource.seRelacionaCon = function(organizacionId, start, rows) {
+		if (!start) start = 0;
+		if (!rows) rows = 5;
+		
+		var url = '/public/organizacion/seRelacionaCon/'+organizacionId+'?start='+start+'&rows='+rows;
+		return $http.get(url);
 	}
 	
 	resource.ancestros = function(relacion, organizacionId) {
@@ -198,12 +210,38 @@ function($rootScope, $scope, $http, $location, $route, $window) {
 		    	'organizacionId' : '='
 		    },
 		    controller: function($scope) {
+		    	var ctrl = {};
+		    	
+		    	$scope.page = 0;
+		    	
+		    	$scope.cambiarPagina = function(organizacionId, page) {
+		          var start = (page - 1) || 0;
+		          console.log($scope.organizacionId);
+	    		  OrganizacionResource.seRelacionaCon(organizacionId, start)
+	    		  	.success(function(data) { 
+	    		  		$scope.seRelacionaCon = data;
+	    		  	});
+		    	}
+		    	return ctrl;
 		    },
 		    templateUrl:"view/relaciones.html",
 		    compile: function(scope, element, attrs, ctrls){
 		    	return {
 		    		pre : function(scope, iElement, iAttrs, controller)  {
-
+		    		      scope.$watch('organizacionId',
+				    		        function ( newVal, oldVal){
+				    		    	  if (newVal) {
+				    		    		  OrganizacionResource.relacionadas(newVal)
+				    		    		  	.success(function(data) { 
+				    		    		  		scope.relacionadas = data.content;
+				    		    		  	});
+				    		    		  OrganizacionResource.seRelacionaCon(newVal)
+				    		    		  	.success(function(data) { 
+				    		    		  		scope.seRelacionaCon = data;
+				    		    		  	});
+				    		    		  
+				    		    	  }
+				    		      });		    			
 		    		}
 		    	}
 		    }
