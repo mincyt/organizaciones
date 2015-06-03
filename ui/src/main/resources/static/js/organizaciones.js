@@ -233,7 +233,7 @@ function($rootScope, $scope, $http, $location, $route, $window) {
 				    		    	  if (newVal) {
 				    		    		  OrganizacionResource.relacionadas(newVal)
 				    		    		  	.success(function(data) { 
-				    		    		  		scope.relacionadas = data.content;
+				    		    		  		scope.relacionadas = data;
 				    		    		  	});
 				    		    		  OrganizacionResource.seRelacionaCon(newVal)
 				    		    		  	.success(function(data) { 

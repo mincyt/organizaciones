@@ -1,5 +1,5 @@
 <h5>Organizaciones Relacionadas</h5>
-<div ng-repeat="relacion in relacionadas">
+<div ng-repeat="relacion in relacionadas.content" ng-hide="relacionadas.totalElements == 0">
 	<div class="panel panel-default">
 		<div class="panel-body">
 			<strong>{{relacion.tipoDeRelacion.denominacion}}</strong>: "<a href="#/organizacion/{{relacion.organizacionRelacionada.organizacionId}}">{{relacion.organizacionRelacionada.nombrePreferido}}</a>"
@@ -7,15 +7,15 @@
 	</div>
 </div>
 <h5>Organizaciones con las que se relaciona:</h5>
-<div ng-repeat="relacion in seRelacionaCon.content">
-	<div class="panel panel-default">
-		<div class="panel-body">
-		 "<a href="#/organizacion/{{relacion.organizacionOrigen.organizacionId}}">{{relacion.organizacionOrigen.nombrePreferido}}</a>" <strong>{{relacion.tipoDeRelacion.denominacion}}</strong>: "{{relacion.organizacionRelacionada.nombrePreferido}}"
+	<div ng-repeat="relacion in seRelacionaCon.content" ng-hide="seRelacionaCon.totalElements == 0">
+		<div class="panel panel-default">
+			<div class="panel-body">
+			 "<a href="#/organizacion/{{relacion.organizacionOrigen.organizacionId}}">{{relacion.organizacionOrigen.nombrePreferido}}</a>" <strong>{{relacion.tipoDeRelacion.denominacion}}</strong>: "{{relacion.organizacionRelacionada.nombrePreferido}}"
+			</div>
 		</div>
 	</div>
-</div>
-<pagination ng-change="cambiarPagina(organizacionId, page)"
-	total-items="seRelacionaCon.totalElements" ng-model="page"
-	max-size="10" class="pagination-sm" boundary-links="true"
-	rotate="false" num-pages="seRelacionaCon.totalPages"></pagination>
-
+	<pagination ng-change="cambiarPagina(organizacionId, page)" ng-hide="seRelacionaCon.totalPages < 2"
+		total-items="seRelacionaCon.totalElements" ng-model="page"
+		max-size="10" class="pagination-sm" boundary-links="true"
+		rotate="false" num-pages="seRelacionaCon.totalPages"></pagination>
+	</div>
