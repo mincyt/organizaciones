@@ -13,6 +13,9 @@ zuul:
     user:
       path: /user/**
       url: http://localhost:9999/uaa/user
+    logout:
+      path: /logout
+      url: http://localhost:9999/uaa/logout
 spring:
   oauth2:
     sso:

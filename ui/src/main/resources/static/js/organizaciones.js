@@ -27,7 +27,7 @@ angular.module('organizaciones', [ 'ui.bootstrap', 'ngResource', 'ngRoute', 'inf
 
 }).controller('navigation',
 
-function($rootScope, $scope, $http, $location, $route) {
+function($rootScope, $scope, $http, $location, $route, $window) {
 
 	$scope.tab = function(route) {
 		return $route.current && route === $route.current.controller;
@@ -48,7 +48,7 @@ function($rootScope, $scope, $http, $location, $route) {
 	$scope.logout = function() {
 		$http.post('logout', {}).success(function() {
 			$rootScope.authenticated = false;
-			$location.path("/");
+			$window.location.href =  "http://localhost:9999/uaa/logout" ;
 		}).error(function(data) {
 			console.log("Logout failed")
 			$rootScope.authenticated = false;
