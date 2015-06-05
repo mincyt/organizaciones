@@ -2,6 +2,7 @@ authserver/.classpath
 authserver/.gitignore
 authserver/.settings/
 authserver/bin/
+authserver/src/main/resources/application.properties
 resource/.classpath
 resource/.gitignore
 resource/.settings/
