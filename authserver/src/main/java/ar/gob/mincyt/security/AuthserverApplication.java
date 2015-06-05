@@ -1,12 +1,7 @@
 package ar.gob.mincyt.security;
 
-import java.io.IOException;
 import java.security.KeyPair;
 import java.security.Principal;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -21,8 +16,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -34,7 +27,6 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
-import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +34,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import ar.gob.mincyt.security.domain.User;
+import ar.gob.mincyt.security.repository.UserRepository;
 
 @SpringBootApplication
 @Controller
@@ -67,8 +62,6 @@ public class AuthserverApplication extends WebMvcConfigurerAdapter {
 		ApplicationContext ctx = SpringApplication.run(AuthserverApplication.class, args);
 //		UserRepository userRepository = (UserRepository)ctx.getBean(UserRepository.class);
 //		PasswordEncoder cuds = (PasswordEncoder) ctx.getBean(PasswordEncoder.class);
-//		cuds.encode("admin")
-//		cuds.createUser("mcarboni", "mcarboni@mincyt.gob.ar", "mcarboni");
 //		User admin = userRepository.findByUsername("Administrador");
 //		admin.setEmail("mcarboni@mincyt.gob.ar");
 //		admin.setPassword(cuds.encode("admin"));

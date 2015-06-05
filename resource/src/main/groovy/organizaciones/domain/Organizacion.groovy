@@ -48,9 +48,9 @@ class Organizacion {
 	@OneToMany(mappedBy="organizacion", fetch=FetchType.EAGER)
 	Set<NombreDeOrganizacion> nombres
 	
-	@Transient
-	@JsonRawValue
-	String changos = '{"prueba": "string convertido en json!!"}'
+//	@Transient
+//	@JsonRawValue
+//	String changos = '{"prueba": "string convertido en json!!"}'
 	
 	static hasMany = [
 		escalafones : Escalafon,

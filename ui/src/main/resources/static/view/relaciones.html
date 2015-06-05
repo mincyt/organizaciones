@@ -1,4 +1,5 @@
-<h5>Organizaciones Relacionadas</h5>
+<h5>Esta organizaci&oacute;n se relaciona con:</h5>
+<span ng-show="relacionadas.totalElements == 0">No se hall&oacute; ninguna relaci&oacute;n para esta organizaci&oacute;n</span>
 <div ng-repeat="relacion in relacionadas.content" ng-hide="relacionadas.totalElements == 0">
 	<div class="panel panel-default">
 		<div class="panel-body">
@@ -6,16 +7,19 @@
 		</div>
 	</div>
 </div>
-<h5>Organizaciones con las que se relaciona:</h5>
-	<div ng-repeat="relacion in seRelacionaCon.content" ng-hide="seRelacionaCon.totalElements == 0">
-		<div class="panel panel-default">
-			<div class="panel-body">
-			 "<a href="#/organizacion/{{relacion.organizacionOrigen.organizacionId}}">{{relacion.organizacionOrigen.nombrePreferido}}</a>" <strong>{{relacion.tipoDeRelacion.denominacion}}</strong>: "{{relacion.organizacionRelacionada.nombrePreferido}}"
-			</div>
+<h5>Otras organizaciones que se relacionan con esta organizaci&oacute;n:</h5>
+<span ng-show="seRelacionaCon.totalElements == 0">No se hallaron organizaciones que se relacionen con esta organizaci&oacute;n</span></span>
+<div ng-repeat="relacion in seRelacionaCon.content" ng-hide="seRelacionaCon.totalElements == 0">
+	<div class="panel panel-default">
+		<div class="panel-body">
+		 "<a href="#/organizacion/{{relacion.organizacionOrigen.organizacionId}}">{{relacion.organizacionOrigen.nombrePreferido}}</a>" <strong>{{relacion.tipoDeRelacion.denominacion}}</strong>: "{{relacion.organizacionRelacionada.nombrePreferido}}"
 		</div>
 	</div>
-	<pagination ng-change="cambiarPagina(organizacionId, page)" ng-hide="seRelacionaCon.totalPages < 2"
-		total-items="seRelacionaCon.totalElements" ng-model="page"
-		max-size="10" class="pagination-sm" boundary-links="true"
-		rotate="false" num-pages="seRelacionaCon.totalPages"></pagination>
-	</div>
+</div>
+<pagination ng-change="cambiarPagina(organizacionId, page)" ng-hide="seRelacionaCon.totalPages < 2"
+	total-items="seRelacionaCon.totalElements" ng-model="page"
+	items-per-page="seRelacionaCon.numberOfElements"
+	max-size="10"
+	class="pagination-sm" boundary-links="true"
+	rotate="false" ></pagination>
+</div>

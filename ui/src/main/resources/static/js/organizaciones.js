@@ -218,7 +218,7 @@ function($rootScope, $scope, $http, $location, $route, $window) {
 		          var start = (page - 1) || 0;
 		          console.log($scope.organizacionId);
 	    		  OrganizacionResource.seRelacionaCon(organizacionId, start)
-	    		  	.success(function(data) { 
+	    		  	.success(function(data) {
 	    		  		$scope.seRelacionaCon = data;
 	    		  	});
 		    	}

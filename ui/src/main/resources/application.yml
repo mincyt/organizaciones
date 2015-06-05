@@ -13,6 +13,9 @@ zuul:
     user:
       path: /user/**
       url: http://localhost:9999/uaa/user
+    service:
+      path: /service/**
+      url: http://localhost:9001/management
 spring:
   oauth2:
     sso:
